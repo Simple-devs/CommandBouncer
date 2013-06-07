@@ -1,0 +1,62 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                       Notes                          | #
+# +------------------------------------------------------+ #
+############################################################
+# This plugin was created by Carlgo11 http://www.carlgo11.com/
+# 
+# Get in touch:
+#
+# Join our irc: http://bit.ly/cmdbouncerirc
+# 
+############################################################
+# +------------------------------------------------------+ #
+# |                  General Settings                    | #
+# +------------------------------------------------------+ #
+############################################################
+
+# If you let us send a stats service send information about how this plugin is used
+opt-out: false
+
+# Does this plugin not work? Set "debug" to true and pastie your log to a dev
+debug: false
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Settings                       | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Do you want this plugin NOT to interact in any worlds? enter them below!
+ignored-worlds:
+#  - Ignore this world
+
+#  - And this one
+
+# Enter the players you don't want the plugin to listen to.
+ignored-players:
+   - KHobbits
+   - anminecrafter
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Listen Commands                    | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Enter the commands you want the plugin to listen on use the same number on the listening command as on the bouncer command!
+
+# EXAMPLE: cmd1: op
+cmd1: hi
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   bounce Commands                    | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Enter the commands that you want the plugin to execute when a player types the given command
+
+# EXAMPLE: cmd1: ban %user% don't try to give yourself op!
+console1: say hi
