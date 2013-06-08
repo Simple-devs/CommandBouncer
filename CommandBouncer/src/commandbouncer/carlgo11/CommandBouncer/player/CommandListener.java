@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 /**
  *
  * @author Carlgo11
- * 
+ *
  * Working, but I will add more!
  */
 public class CommandListener implements Listener {

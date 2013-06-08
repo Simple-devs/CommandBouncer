@@ -14,6 +14,7 @@ public class CommandBouncer extends JavaPlugin {
 
     public static CommandBouncer plugin;
     public static String errormsg = null;
+
     public void onEnable() {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
@@ -33,8 +34,8 @@ public class CommandBouncer extends JavaPlugin {
 
     @Override
     public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
-        
-        if(cmd.getName().equalsIgnoreCase("CommandBouncer")){
+
+        if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {
             sender.sendMessage("More will be added soon! :)");
         }
         return true;
@@ -51,7 +52,7 @@ public class CommandBouncer extends JavaPlugin {
         }
     }
 
-     public void checkcmd() {
+    public void checkcmd() {
 
         while (a != b) {
             if (getConfig().contains("cmd" + a)) {
@@ -59,20 +60,20 @@ public class CommandBouncer extends JavaPlugin {
                 System.out.println("a=" + a);
                 System.out.println("b=" + b);
             } else {
-                if(a == b){
-                   errormsg="No cmds set!";
-                   onError();
+                if (a == 1) {
+                    errormsg = "No cmds set!";
+                    onError();
                 }
             }
         }
-        
+
         if (a == b) {
             System.out.println("while closed");
             b = a;
         }
     }
-    
-     public void onError(){                                                   // Not used at the moment
+
+    public void onError() {                                                   // Not used at the moment
         System.out.println("============ CommandBouncer ============");
         System.out.println("ERROR MESSAGE STARTING: ");
         System.out.println("");
@@ -80,9 +81,7 @@ public class CommandBouncer extends JavaPlugin {
         System.out.println();
         System.out.println("!PLUGIN DISABLED!");
         System.out.println("========================================");
-        errormsg=null;
+        errormsg = null;
         this.getServer().getPluginManager().disablePlugin(this);
     }
-    
-    
 }
