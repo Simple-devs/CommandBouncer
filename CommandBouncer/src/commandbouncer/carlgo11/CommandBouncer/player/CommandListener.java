@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 /**
  *
  * @author Carlgo11
+ * 
+ * Working, but I will add more!
  */
 public class CommandListener implements Listener {
 
@@ -22,67 +24,69 @@ public class CommandListener implements Listener {
 
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent e) {
-        System.out.println("chat registred!");
-        System.out.println("a = " + CommandBouncer.a);
-        System.out.println("b = " + CommandBouncer.b);
+        System.out.println("[" + plugin.getDescription().getName() + "] " + "chat registred!");
+        System.out.println("[" + plugin.getDescription().getName() + "] " + "a = " + CommandBouncer.a);
+        System.out.println("[" + plugin.getDescription().getName() + "] " + "b = " + CommandBouncer.b);
         Player player = e.getPlayer();
         String cmd = e.getMessage();
         final String[] asd = e.getMessage().split(" ");
 
         for (int a = 1; a < CommandBouncer.b; a++) { // cmdbnc.a ! b
             if (plugin.getConfig().getBoolean("debug") == true) {
-            System.out.println("forloop started!");
+                System.out.println("[" + plugin.getDescription().getName() + "] " + "forloop started!");
             }
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
                 if (plugin.getConfig().getBoolean("debug") == true) {
-                System.out.println("matches cmd" + a);
+                    System.out.println("[" + plugin.getDescription().getName() + "] " + "matches cmd" + a);
                 }
-
-
-                if (player.hasPermission("CommandBouncer.listen.cmd" + a) || player.hasPermission("CommandBouncer.listen.*") || player.hasPermission("CommandBouncer.*")) {
-                    //if (!plugin.getConfig().getString("ignore-worlds").equalsIgnoreCase(player.getWorld() + "")) {
-                    if (plugin.getConfig().contains("console" + a)) {
-                        String dastring = plugin.getConfig().getString("console" + a);
-                        String replaceAlla = dastring.replaceAll("%player%", player.getName());
-                        if (plugin.getConfig().getBoolean("debug") == true) {
-                        System.out.println("dastring:" + replaceAlla);
-                        System.out.println("Console bnc string found!");
-                        }
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceAlla);
-                        if (plugin.getConfig().getBoolean("debug") == true) {
-                        System.out.println("Console" + a + ": " + plugin.getConfig().getString("Console" + a));
+                if (player.hasPermission("CommandBouncer.listen.cmd" + a) || player.hasPermission("CommandBouncer.listen.*") || player.hasPermission("CommandBouncer.*")) { // Checks if player has permission
+                    if (plugin.getConfig().getList("ignored-worlds").contains(player.getWorld())) {
+                        if (!plugin.getConfig().getBoolean("debug") == true) {
+                            System.out.println("[" + plugin.getDescription().getName() + "] " + player.getName() + " is in a disabled world!");
                         }
                     } else {
                         if (plugin.getConfig().getBoolean("debug") == true) {
-                        System.out.println("No console bnc string found!");
+                            System.out.println("[" + plugin.getDescription().getName() + "] " + player.getName() + " is not in a disabled world!");
                         }
-                    }
-                    if (plugin.getConfig().contains("player" + a)) {
-                        String dastring = plugin.getConfig().getString("player" + a);
-                        String replaceAlla = dastring.replaceAll("%player%", player.getName());
-                            System.out.println("dastring:" + dastring);
-                        System.out.println("player bnc string found!");
-                        Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceAlla);
-                    } else {
-                        if (plugin.getConfig().getBoolean("debug") == true) {
-                        System.out.println("No player bnc string found!");
+                        e.setCancelled(true); // Disables the command
+                        if (plugin.getConfig().contains("console" + a)) {
+                            String dastring = plugin.getConfig().getString("console" + a);
+                            String replaceAlla = dastring.replaceAll("%player%", player.getName());
+                            if (plugin.getConfig().getBoolean("debug") == true) {
+                                System.out.println("[" + plugin.getDescription().getName() + "] " + "dastring:" + replaceAlla);
+                                System.out.println("[" + plugin.getDescription().getName() + "] " + "Console bnc string found!");
+                            }
+                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceAlla);
+                            if (plugin.getConfig().getBoolean("debug") == true) {
+                                System.out.println("[" + plugin.getDescription().getName() + "] " + "Console" + a + ": " + plugin.getConfig().getString("Console" + a));
+                            }
+                        } else {
+                            if (plugin.getConfig().getBoolean("debug") == true) {
+                                System.out.println("[" + plugin.getDescription().getName() + "] " + "No console bnc string found!");
+                            }
                         }
-                    }
+                        if (plugin.getConfig().contains("player" + a)) {
+                            String dastring = plugin.getConfig().getString("player" + a);
+                            String replaceAlla = dastring.replaceAll("%player%", player.getName());
+                            System.out.println("[" + plugin.getDescription().getName() + "] " + "dastring:" + dastring);
+                            System.out.println("[" + plugin.getDescription().getName() + "] " + "player bnc string found!");
+                            Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceAlla);
+                        } else {
+                            if (plugin.getConfig().getBoolean("debug") == true) {
+                                System.out.println("[" + plugin.getDescription().getName() + "] " + "No player bnc string found!");
+                            }
+                        }
 
-                    //}
+                    }
                 }
             } else {
                 if (plugin.getConfig().getBoolean("debug") == true) {
-                    System.out.println("No match: cmd" + a);
-                    System.out.println("player's-cmd:" + e.getMessage());
-                    System.out.println("cmd" + a + ":" + plugin.getConfig().getString("cmd" + a));
-                    System.out.println(" ");
+                    System.out.println("[" + plugin.getDescription().getName() + "] " + "No match: cmd" + a);
+                    System.out.println("[" + plugin.getDescription().getName() + "] " + "player's-cmd:" + e.getMessage());
+                    System.out.println("[" + plugin.getDescription().getName() + "] " + "cmd" + a + ":" + plugin.getConfig().getString("cmd" + a));
+                    System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
                 }
             }
         }
-    }
-
-    private void replaceAll(String player, String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

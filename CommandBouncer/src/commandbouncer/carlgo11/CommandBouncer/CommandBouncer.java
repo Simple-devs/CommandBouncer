@@ -1,6 +1,5 @@
 package commandbouncer.carlgo11.CommandBouncer;
 
-import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import commandbouncer.carlgo11.CommandBouncer.player.*;
 import java.io.File;
@@ -12,9 +11,9 @@ import org.bukkit.command.CommandSender;
  * @author Carlgo11
  */
 public class CommandBouncer extends JavaPlugin {
-public static CommandBouncer plugin;
-    public final static Logger logger = Logger.getLogger("Minercraft");
 
+    public static CommandBouncer plugin;
+    public static String errormsg = null;
     public void onEnable() {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
@@ -24,7 +23,7 @@ public static CommandBouncer plugin;
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
         this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled!");
-        checkcmd();
+        //checkcmd();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
 
@@ -33,12 +32,16 @@ public static CommandBouncer plugin;
     }
 
     @Override
-    public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {
+    public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
+        
+        if(cmd.getName().equalsIgnoreCase("CommandBouncer")){
+            sender.sendMessage("More will be added soon! :)");
+        }
         return true;
     }
-    
-    public static int a = 1;
-    public static int b = 0;
+    public static int a = 0;
+    public static int b = 20;
+
     public void checkconfigfile() {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
@@ -47,20 +50,39 @@ public static CommandBouncer plugin;
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
     }
-    
-     static public void checkcmd() {
 
+     public void checkcmd() {
 
         while (a != b) {
-            if (plugin.getConfig().getString("list-cmds").contains("cmd" + b)) {
+            if (getConfig().contains("cmd" + a)) {
                 a++;
                 System.out.println("a=" + a);
                 System.out.println("b=" + b);
+            } else {
+                if(a == b){
+                   errormsg="No cmds set!";
+                   onError();
+                }
             }
-        }  
+        }
+        
         if (a == b) {
             System.out.println("while closed");
             b = a;
         }
     }
+    
+     public void onError(){                                                   // Not used at the moment
+        System.out.println("============ CommandBouncer ============");
+        System.out.println("ERROR MESSAGE STARTING: ");
+        System.out.println("");
+        System.out.println("Error: " + errormsg);
+        System.out.println();
+        System.out.println("!PLUGIN DISABLED!");
+        System.out.println("========================================");
+        errormsg=null;
+        this.getServer().getPluginManager().disablePlugin(this);
+    }
+    
+    
 }

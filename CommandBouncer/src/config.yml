@@ -5,7 +5,7 @@
 ############################################################
 # This plugin was created by Carlgo11 http://www.carlgo11.com/
 # 
-# Get in touch:
+# Get in touch with us:
 #
 # Join our irc: http://bit.ly/cmdbouncerirc
 # 
@@ -16,9 +16,11 @@
 ############################################################
 
 # If you let us send a stats service send information about how this plugin is used
+# true/false (false to send)
 opt-out: false
 
 # Does this plugin not work? Set "debug" to true and pastie your log to a dev
+# true/false
 debug: false
 
 
@@ -30,7 +32,8 @@ debug: false
 
 # Do you want this plugin NOT to interact in any worlds? enter them below!
 ignored-worlds:
-#  - Ignore this world
+    - superawesome_world
+    - even_more_awesome_world
 
 #  - And this one
 
@@ -58,5 +61,5 @@ cmd1: hi
 
 # Enter the commands that you want the plugin to execute when a player types the given command
 
-# EXAMPLE: cmd1: ban %user% don't try to give yourself op!
-console1: say hi
+# EXAMPLE: cmd1: ban %player% don't try to give yourself op!
+console1: say Good day %player%!
