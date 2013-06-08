@@ -1,4 +1,4 @@
-package com.carlgo11.automessage.main;
+package commandbouncer.carlgo11.CommandBouncer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -24,6 +24,14 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
+
+
+/**
+ * DO NOT EDIT THIS!
+ * YOUR PULL WILL BE REMOVED!
+ * 
+ * 
+ */
 
 /**
  * <p>
