@@ -3,6 +3,8 @@ package commandbouncer.carlgo11.CommandBouncer;
 import org.bukkit.plugin.java.JavaPlugin;
 import commandbouncer.carlgo11.CommandBouncer.player.*;
 import java.io.File;
+import java.io.IOException;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -24,6 +26,11 @@ public class CommandBouncer extends JavaPlugin {
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
         this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled!");
+        try {
+				Metrics metrics = new Metrics(this); metrics.start();
+				} catch (IOException e) { 
+				System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
+				}
         //checkcmd();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
@@ -35,8 +42,22 @@ public class CommandBouncer extends JavaPlugin {
     @Override
     public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
 
-        if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {
-            sender.sendMessage("More will be added soon! :)");
+        if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {     //PERMS!
+            if (args.length == 0) { // EXAMPLE: /cmd arg0 arg1 arg2
+                //Menu
+                sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
+                sender.sendMessage("");
+                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer" + ChatColor.YELLOW + " Shows all avible commands");
+                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
+
+
+            } else if (args.length == 1) {
+                if (args[0].equalsIgnoreCase("reload")) {
+                } else {
+                }
+            } else if (args.length == 2) {
+            }
+            sender.sendMessage("More will be added soon! :)");          //delete this
         }
         return true;
     }
@@ -73,7 +94,7 @@ public class CommandBouncer extends JavaPlugin {
         }
     }
 
-    public void onError() {                                                   // Not used at the moment
+    public void onError() {                                                   
         System.out.println("============ CommandBouncer ============");
         System.out.println("ERROR MESSAGE STARTING: ");
         System.out.println("");
