@@ -13,6 +13,8 @@ Development
 
 To help us develop this plugin you'll need:
 
+- Only work in Branch: DEV
+
 - GitHub
 
 - NetBeans
