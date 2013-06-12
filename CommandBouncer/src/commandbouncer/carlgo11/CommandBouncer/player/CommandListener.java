@@ -21,69 +21,66 @@ public class CommandListener implements Listener {
         super();
         this.plugin = plug;
     }
+    String debugmsg = null;
 
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent e) {
         if (plugin.getConfig().getBoolean("debug") == true) {
-        System.out.println("[" + plugin.getDescription().getName() + "] " + "chat registred!");
-        System.out.println("[" + plugin.getDescription().getName() + "] " + "a = " + CommandBouncer.a);
-        System.out.println("[" + plugin.getDescription().getName() + "] " + "b = " + CommandBouncer.b);
+            System.out.println("[" + plugin.getDescription().getName() + "] " + "chat registred!");
+            System.out.println("[" + plugin.getDescription().getName() + "] " + "a = " + CommandBouncer.a);
+            System.out.println("[" + plugin.getDescription().getName() + "] " + "b = " + CommandBouncer.b);
         }
         Player player = e.getPlayer();
         String cmd = e.getMessage();
         final String[] asd = e.getMessage().split(" ");
 
         for (int a = 1; a < CommandBouncer.b; a++) { // cmdbnc.a ! b
-            if (plugin.getConfig().getBoolean("debug") == true) {
-                System.out.println("[" + plugin.getDescription().getName() + "] " + "forloop started!");
-            }
+            debugmsg = "forloop started!";
+            senddebug();
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
-                if (plugin.getConfig().getBoolean("debug") == true) {
-                    System.out.println("[" + plugin.getDescription().getName() + "] " + "matches cmd" + a);
-                }
+                debugmsg = "matches cmd" + a;
+                senddebug();
                 if (player.hasPermission("CommandBouncer.listen.cmd" + a) || player.hasPermission("CommandBouncer.listen.*") || player.hasPermission("CommandBouncer.*")) { // Checks if player has permission
-                    if (plugin.getConfig().getList("ignored-worlds").contains(player.getWorld())) {
-                        if (!plugin.getConfig().getBoolean("debug") == true) {
-                            System.out.println("[" + plugin.getDescription().getName() + "] " + player.getName() + " is in a disabled world!");
-                        }
+                    //  if (plugin.getConfig().getList("ignored-worlds").equals(player.getWorld())) { Not working at the moment! Can anyone look at this?
+                    debugmsg = player.getName() + " is not in a disabled world!";
+                    senddebug();
+                    e.setCancelled(true); // Disables the command
+                    if (plugin.getConfig().contains("console" + a)) {
+                        String dastring = plugin.getConfig().getString("console" + a);
+                        String replacea = dastring.replaceAll("%player%", player.getName());
+                        debugmsg = "dastring:" + replacea;
+                        senddebug();
+                        debugmsg = "Console bnc string found!"; // Do we need to use this anymore? Waiting on second confirmation from another dev
+                        senddebug();
+                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replacea);
+                        debugmsg = "Console" + a + ": " + plugin.getConfig().getString("console" + a);
+                        senddebug();
                     } else {
-                        if (plugin.getConfig().getBoolean("debug") == true) {
-                            System.out.println("[" + plugin.getDescription().getName() + "] " + player.getName() + " is not in a disabled world!");
-                        }
-                        e.setCancelled(true); // Disables the command
-                        if (plugin.getConfig().contains("console" + a)) {
-                            String dastring = plugin.getConfig().getString("console" + a);
-                            String replaceAlla = dastring.replaceAll("%player%", player.getName());
-                            if (plugin.getConfig().getBoolean("debug") == true) {
-                                System.out.println("[" + plugin.getDescription().getName() + "] " + "dastring:" + replaceAlla);
-                                System.out.println("[" + plugin.getDescription().getName() + "] " + "Console bnc string found!");
-                            }
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceAlla);
-                            if (plugin.getConfig().getBoolean("debug") == true) {
-                                System.out.println("[" + plugin.getDescription().getName() + "] " + "Console" + a + ": " + plugin.getConfig().getString("Console" + a));
-                            }
-                        } else {
-                            if (plugin.getConfig().getBoolean("debug") == true) {
-                                System.out.println("[" + plugin.getDescription().getName() + "] " + "No console bnc string found!");
-                            }
-                        }
-                        if (plugin.getConfig().contains("player" + a)) {
-                            String dastring = plugin.getConfig().getString("player" + a);
-                            String replaceAlla = dastring.replaceAll("%player%", player.getName());
-                            System.out.println("[" + plugin.getDescription().getName() + "] " + "dastring:" + dastring);
-                            System.out.println("[" + plugin.getDescription().getName() + "] " + "player bnc string found!");
-                            Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceAlla);
-                        } else {
-                            if (plugin.getConfig().getBoolean("debug") == true) {
-                                System.out.println("[" + plugin.getDescription().getName() + "] " + "No player bnc string found!");
-                            }
-                        }
+                        debugmsg = "No console bnc string found!";
+                        senddebug();
+                    }
+                    if (plugin.getConfig().contains("player" + a)) {
+                        String dastring = plugin.getConfig().getString("player" + a);
+                        String replaceAlla = dastring.replaceAll("%player%", player.getName());
+                        debugmsg = "dastring:" + dastring;
+                        senddebug();
+                        debugmsg = "player bnc string found!";
+                        senddebug();
+                        Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceAlla);
+                    } else {
+                        debugmsg = "No player bnc string found!";
+                        senddebug();
+                    }
 
-                    }
+                    /**
+                     * } else { debugmsg = player.getName() + " is in a disabled
+                     * world!"; senddebug(); System.out.println("[" +
+                     * plugin.getDescription().getName() + "] " + " "); } *
+                     */
                 } else {
-                    if (plugin.getConfig().getBoolean("debug") == true) {
-                        System.out.println("[" + plugin.getDescription().getName() + "] " + "player don't have permission");
-                    }
+                    debugmsg = player.getName() + " don't have permission for cmd" + a;
+                    senddebug();
+                    System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
                 }
             } else {
                 if (plugin.getConfig().getBoolean("debug") == true) {
@@ -93,6 +90,23 @@ public class CommandListener implements Listener {
                     System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
                 }
             }
+        }
+    }
+
+     public void senddebug() {  // Will make it easier to send debug messages to the console
+        if (plugin.getConfig().getBoolean("debug") == true) {
+            System.out.println("[" + plugin.getDescription().getName() + "] " + debugmsg);
+
+            /**
+             * To send debug messages use debugmsg = "debug message";
+             * then to send the message to this method use senddebug();
+             * 
+             * Example: debugmsg = "hi";
+             *          senddebug();
+             * 
+             * Result: [INFO] [CommandBouncer] hi
+             */
+            
         }
     }
 }
