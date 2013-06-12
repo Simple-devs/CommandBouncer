@@ -41,23 +41,34 @@ public class CommandBouncer extends JavaPlugin {
 
     @Override
     public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
-
-        if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {     //PERMS!
+        String prefix = ChatColor.GREEN + "[" + getDescription().getName() + "] " + ChatColor.RESET;
+        String badperm = ChatColor.RED + "Error: You don't have permission to perform that action!";
+        if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {
+            
             if (args.length == 0) { // EXAMPLE: /cmd arg0 arg1 arg2
                 //Menu
+                if(sender.hasPermission("commandbouncer.cmd.commandbouncer")){
                 sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
                 sender.sendMessage("");
                 sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer" + ChatColor.YELLOW + " Shows all avible commands");
                 sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
-
-
+            } else {
+                    sender.sendMessage(prefix + badperm);
+                }
             } else if (args.length == 1) {
+                
                 if (args[0].equalsIgnoreCase("reload")) {
+                    if(sender.hasPermission("commandbouncer.cmd.commandbouncer.reload")) {
+                    this.reloadConfig();
+                    //checkcmd();
+                    sender.sendMessage(prefix + ChatColor.GREEN + "Config reloaded!");
+                } else {
+                       sender.sendMessage(prefix + badperm);
+                    }
                 } else {
                 }
             } else if (args.length == 2) {
             }
-            sender.sendMessage("More will be added soon! :)");          //delete this
         }
         return true;
     }

@@ -24,9 +24,11 @@ public class CommandListener implements Listener {
 
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent e) {
+        if (plugin.getConfig().getBoolean("debug") == true) {
         System.out.println("[" + plugin.getDescription().getName() + "] " + "chat registred!");
         System.out.println("[" + plugin.getDescription().getName() + "] " + "a = " + CommandBouncer.a);
         System.out.println("[" + plugin.getDescription().getName() + "] " + "b = " + CommandBouncer.b);
+        }
         Player player = e.getPlayer();
         String cmd = e.getMessage();
         final String[] asd = e.getMessage().split(" ");
