@@ -80,6 +80,10 @@ public class CommandListener implements Listener {
                         }
 
                     }
+                } else {
+                    if (plugin.getConfig().getBoolean("debug") == true) {
+                        System.out.println("[" + plugin.getDescription().getName() + "] " + "player don't have permission");
+                    }
                 }
             } else {
                 if (plugin.getConfig().getBoolean("debug") == true) {
