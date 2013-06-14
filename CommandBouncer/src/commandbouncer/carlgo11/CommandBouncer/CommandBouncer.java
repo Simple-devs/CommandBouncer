@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 
 /**
  *
- * @author Carlgo11
+ * @author Carlgo11 and Lain Iwakura
  */
 public class CommandBouncer extends JavaPlugin {
 
@@ -25,24 +25,26 @@ public class CommandBouncer extends JavaPlugin {
 
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
-        this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled!");
+        this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled");
         try {
 				Metrics metrics = new Metrics(this); metrics.start();
 				} catch (IOException e) { 
 				System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
 				}
-        //checkcmd();
+        checkcmd();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
 
     public void onDisable() {
-        this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is disabled!");
+        this.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " is disabled!");
     }
 
     @Override
     public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
         String prefix = ChatColor.GREEN + "[" + getDescription().getName() + "] " + ChatColor.RESET;
         String badperm = ChatColor.RED + "Error: You don't have permission to perform that action!";
+        
+        
         if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {
             
             if (args.length == 0) { // EXAMPLE: /cmd arg0 arg1 arg2
@@ -68,12 +70,14 @@ public class CommandBouncer extends JavaPlugin {
                 } else {
                 }
             } else if (args.length == 2) {
+                // Add code here?
             }
         }
         return true;
     }
-    public static int a = 0;
-    public static int b = 20;
+    public static int a = 0; // cmd checker
+    public static int b = 0; // Error checker
+    public static int c = 3; // Max errors allowed int
 
     public void checkconfigfile() {
         File config = new File(this.getDataFolder(), "config.yml");
@@ -86,23 +90,28 @@ public class CommandBouncer extends JavaPlugin {
 
     public void checkcmd() {
 
-        while (a != b) {
-            if (getConfig().contains("cmd" + a)) {
-                a++;
-                System.out.println("a=" + a);
-                System.out.println("b=" + b);
+        for(a = a; b !=c; a++){
+            if(getConfig().contains("cmd"+a)){
+                /*System.out.println("Worked---------------------"); // Debug not needed
+                System.out.println("a: "+a);
+                System.out.println("b: "+b);
+                */ 
             } else {
-                if (a == 1) {
-                    errormsg = "No cmds set!";
-                    onError();
-                }
+                /*                                                  // Debug not needed
+                System.out.println("Did not work"+b);
+                System.out.println("a "+a);
+                System.out.println("b "+b);
+                */
+                b++;
             }
         }
-
-        if (a == b) {
-            System.out.println("while closed");
-            b = a;
-        }
+        
+        if(b == c ){
+            if (getConfig().getBoolean("debug") == true) {
+            System.out.println("While loop closed");
+            }
+            getLogger().info("Loaded "+a+" cmds from the config!");
+        } 
     }
 
     public void onError() {                                                   

@@ -3,6 +3,7 @@ package commandbouncer.carlgo11.CommandBouncer.player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import commandbouncer.carlgo11.CommandBouncer.*;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -34,25 +35,27 @@ public class CommandListener implements Listener {
         String cmd = e.getMessage();
         final String[] asd = e.getMessage().split(" ");
 
-        for (int a = 1; a < CommandBouncer.b; a++) { // cmdbnc.a ! b
+        List<String> ignoreworlds = plugin.getConfig().getStringList("ignored-worlds");
+        for (int a = 1; a != CommandBouncer.a; a++) { // cmdbnc.a ! b
             debugmsg = "forloop started!";
             senddebug();
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
                 debugmsg = "matches cmd" + a;
                 senddebug();
                 if (player.hasPermission("CommandBouncer.listen.cmd" + a) || player.hasPermission("CommandBouncer.listen.*") || player.hasPermission("CommandBouncer.*")) { // Checks if player has permission
-                    //  if (plugin.getConfig().getList("ignored-worlds").equals(player.getWorld())) { Not working at the moment! Can anyone look at this?
+                      if (!plugin.getConfig().getStringList("ignored-worlds").contains(player.getWorld())) { //Not working at the moment! Can anyone look at this?
                     debugmsg = player.getName() + " is not in a disabled world!";
                     senddebug();
                     e.setCancelled(true); // Disables the command
                     if (plugin.getConfig().contains("console" + a)) {
                         String dastring = plugin.getConfig().getString("console" + a);
-                        String replacea = dastring.replaceAll("%player%", player.getName());
-                        debugmsg = "dastring:" + replacea;
+                        String replaceinput = dastring.replaceAll("%player%", player.getName());
+                        replaceinput.replaceAll("%world%", player.getWorld().getName());
+                        debugmsg = "dastring:" + replaceinput;
                         senddebug();
                         debugmsg = "Console bnc string found!"; // Do we need to use this anymore? Waiting on second confirmation from another dev
                         senddebug();
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replacea);
+                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceinput);
                         debugmsg = "Console" + a + ": " + plugin.getConfig().getString("console" + a);
                         senddebug();
                     } else {
@@ -61,31 +64,34 @@ public class CommandListener implements Listener {
                     }
                     if (plugin.getConfig().contains("player" + a)) {
                         String dastring = plugin.getConfig().getString("player" + a);
-                        String replaceAlla = dastring.replaceAll("%player%", player.getName());
+                        String replaceinput = dastring.replaceAll("%player%", player.getName());
+                        replaceinput = dastring.replaceAll("%world%", player.getWorld().getName());
                         debugmsg = "dastring:" + dastring;
                         senddebug();
                         debugmsg = "player bnc string found!";
                         senddebug();
-                        Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceAlla);
+                        Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceinput);
                     } else {
                         debugmsg = "No player bnc string found!";
                         senddebug();
                     }
 
-                    /**
-                     * } else { debugmsg = player.getName() + " is in a disabled
-                     * world!"; senddebug(); System.out.println("[" +
-                     * plugin.getDescription().getName() + "] " + " "); } *
-                     */
+                    
+                      } else {
+                          debugmsg = player.getName() + " is in a disabled world!";
+                          senddebug(); System.out.println("[" + plugin.getDescription().getName() + "] " + " "); } 
+                     
                 } else {
                     debugmsg = player.getName() + " don't have permission for cmd" + a;
                     senddebug();
+                    if (plugin.getConfig().getBoolean("debug") == true) {
                     System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
+                    }
                 }
             } else {
                 if (plugin.getConfig().getBoolean("debug") == true) {
                     System.out.println("[" + plugin.getDescription().getName() + "] " + "No match: cmd" + a);
-                    System.out.println("[" + plugin.getDescription().getName() + "] " + "player's-cmd:" + e.getMessage());
+                    System.out.println("[" + plugin.getDescription().getName() + "] " + player.getName()+"'s-cmd:" + e.getMessage());
                     System.out.println("[" + plugin.getDescription().getName() + "] " + "cmd" + a + ":" + plugin.getConfig().getString("cmd" + a));
                     System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
                 }
@@ -105,7 +111,7 @@ public class CommandListener implements Listener {
              *          senddebug();
              * 
              * Result: [INFO] [CommandBouncer] hi
-             */
+             **/
             
         }
     }

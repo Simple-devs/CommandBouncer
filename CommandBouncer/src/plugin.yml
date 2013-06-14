@@ -1,7 +1,7 @@
 main: commandbouncer.carlgo11.CommandBouncer.CommandBouncer
 name: CommandBouncer
 version: A0.1
-author: Carlgo11, Cabbex
+author: Carlgo11, Cabbex, psgs
 description: This plugin sends a command that's set in the config, when a user types a certain command.
 commands:
   CommandBouncer:
