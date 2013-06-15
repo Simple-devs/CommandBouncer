@@ -3,11 +3,14 @@
 # |                       Notes                          | #
 # +------------------------------------------------------+ #
 ############################################################
-# This plugin was created by Carlgo11 http://www.carlgo11.com/
-# 
+# This plugin was created by: 
+# Carlgo11 http://www.carlgo11.com/
+# Psgs http://www.psgs.tk/
+# Cabbex 
 # Get in touch with us:
 #
 # Join our irc: http://bit.ly/cmdbouncerirc
+# 
 # 
 ############################################################
 # +------------------------------------------------------+ #
@@ -63,3 +66,4 @@ cmd1: hi
 
 # EXAMPLE: cmd1: ban %player% don't try to give yourself op!
 console1: say Good day %player%!
+
