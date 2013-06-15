@@ -25,7 +25,9 @@ opt-out: false
 # Does this plugin not work? Set "debug" to true and pastie your log to a dev
 # true/false
 debug: false
-
+#
+# Want the plugin to disable the outgoing message when a match is found?
+disable-on-match: true
 
 ############################################################
 # +------------------------------------------------------+ #

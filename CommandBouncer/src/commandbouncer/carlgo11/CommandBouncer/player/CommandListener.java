@@ -42,6 +42,10 @@ public class CommandListener implements Listener {
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
                 debugmsg = "matches cmd" + a;
                 senddebug();
+                if(plugin.getConfig().getBoolean("disable-on-match") == true){
+                    e.setCancelled(true);
+                    System.out.println(player.getName()+" issued server command: "+cmd.toString());
+                }
                 if (player.hasPermission("CommandBouncer.listen.cmd" + a) || player.hasPermission("CommandBouncer.listen.*") || player.hasPermission("CommandBouncer.*")) { // Checks if player has permission
                       if (!plugin.getConfig().getStringList("ignored-worlds").contains(player.getWorld())) { //Not working at the moment! Can anyone look at this?
                     debugmsg = player.getName() + " is not in a disabled world!";
