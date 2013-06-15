@@ -49,7 +49,7 @@ public class CommandBouncer extends JavaPlugin {
             
             if (args.length == 0) { // EXAMPLE: /cmd arg0 arg1 arg2
                 //Menu
-                if(sender.hasPermission("commandbouncer.cmd.commandbouncer")){
+                if(sender.hasPermission("commandbouncer.cmd.commandbouncer") || sender.hasPermission("CommandBouncer.*")){
                 sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
                 sender.sendMessage("");
                 sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer" + ChatColor.YELLOW + " Shows all avible commands");
@@ -60,7 +60,7 @@ public class CommandBouncer extends JavaPlugin {
             } else if (args.length == 1) {
                 
                 if (args[0].equalsIgnoreCase("reload")) {
-                    if(sender.hasPermission("commandbouncer.cmd.commandbouncer.reload")) {
+                    if(sender.hasPermission("commandbouncer.cmd.commandbouncer.reload") || sender.hasPermission("CommandBouncer.*")) {
                     this.reloadConfig();
                     //checkcmd();
                     sender.sendMessage(prefix + ChatColor.GREEN + "Config reloaded!");
@@ -68,9 +68,12 @@ public class CommandBouncer extends JavaPlugin {
                        sender.sendMessage(prefix + badperm);
                     }
                 } else {
+                    // more 1 arg commands here:
+                    
                 }
             } else if (args.length == 2) {
                 // Add code here?
+                
             }
         }
         return true;

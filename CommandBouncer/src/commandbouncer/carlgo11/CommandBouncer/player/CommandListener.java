@@ -5,6 +5,7 @@ import org.bukkit.event.Listener;
 import commandbouncer.carlgo11.CommandBouncer.*;
 import java.util.List;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
@@ -12,7 +13,6 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
  *
  * @author Carlgo11
  *
- * Working, but I will add more!
  */
 public class CommandListener implements Listener {
 
@@ -50,12 +50,12 @@ public class CommandListener implements Listener {
                     if (plugin.getConfig().contains("console" + a)) {
                         String dastring = plugin.getConfig().getString("console" + a);
                         String replaceinput = dastring.replaceAll("%player%", player.getName());
-                        replaceinput.replaceAll("%world%", player.getWorld().getName());
+                        String replaceinput2 = replaceinput.replaceAll("%world%", player.getWorld().getName());
                         debugmsg = "dastring:" + replaceinput;
                         senddebug();
                         debugmsg = "Console bnc string found!"; // Do we need to use this anymore? Waiting on second confirmation from another dev
                         senddebug();
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceinput);
+                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceinput2);
                         debugmsg = "Console" + a + ": " + plugin.getConfig().getString("console" + a);
                         senddebug();
                     } else {
@@ -65,12 +65,12 @@ public class CommandListener implements Listener {
                     if (plugin.getConfig().contains("player" + a)) {
                         String dastring = plugin.getConfig().getString("player" + a);
                         String replaceinput = dastring.replaceAll("%player%", player.getName());
-                        replaceinput = dastring.replaceAll("%world%", player.getWorld().getName());
+                        String replaceinput2 = replaceinput.replaceAll("%world%", player.getWorld().getName());
                         debugmsg = "dastring:" + dastring;
                         senddebug();
                         debugmsg = "player bnc string found!";
                         senddebug();
-                        Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceinput);
+                        Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceinput2);
                     } else {
                         debugmsg = "No player bnc string found!";
                         senddebug();
