@@ -66,6 +66,6 @@ cmd1: hi
 
 # Enter the commands that you want the plugin to execute when a player types the given command
 
-# EXAMPLE: cmd1: ban %player% don't try to give yourself op!
+# EXAMPLE: console1: ban %player% don't try to give yourself op!
 console1: say Good day %player%!
 
