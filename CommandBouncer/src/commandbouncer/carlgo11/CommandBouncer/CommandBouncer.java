@@ -48,12 +48,12 @@ public class CommandBouncer extends JavaPlugin {
         if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {
             
             if (args.length == 0) { // EXAMPLE: /cmd arg0 arg1 arg2
-                //Menu
                 if(sender.hasPermission("commandbouncer.cmd.commandbouncer") || sender.hasPermission("CommandBouncer.*")){
                 sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
                 sender.sendMessage("");
                 sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer" + ChatColor.YELLOW + " Shows all avible commands");
                 sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
+                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer List" + ChatColor.YELLOW + " List all the commands that the plugin listens on");
             } else {
                     sender.sendMessage(prefix + badperm);
                 }
@@ -68,6 +68,12 @@ public class CommandBouncer extends JavaPlugin {
                        sender.sendMessage(prefix + badperm);
                     }
                 } else {
+                    /*if(args[0].equalsIgnoreCase("list")) {
+                        sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
+                        sender.sendMessage("");
+                        //for loop here?
+                        
+                    } */
                     // more 1 arg commands here:
                     
                 }
@@ -95,16 +101,7 @@ public class CommandBouncer extends JavaPlugin {
 
         for(a = a; b !=c; a++){
             if(getConfig().contains("cmd"+a)){
-                /*System.out.println("Worked---------------------"); // Debug not needed
-                System.out.println("a: "+a);
-                System.out.println("b: "+b);
-                */ 
             } else {
-                /*                                                  // Debug not needed
-                System.out.println("Did not work"+b);
-                System.out.println("a "+a);
-                System.out.println("b "+b);
-                */
                 b++;
             }
         }
