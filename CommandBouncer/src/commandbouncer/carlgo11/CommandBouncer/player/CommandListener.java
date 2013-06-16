@@ -36,7 +36,7 @@ public class CommandListener implements Listener {
         final String[] asd = e.getMessage().split(" ");
 
         List<String> ignoreworlds = plugin.getConfig().getStringList("ignored-worlds");
-        for (int a = 1; a != CommandBouncer.a; a++) { // cmdbnc.a ! b
+        for (int a = 1; a != CommandBouncer.a; a++) { 
             debugmsg = "forloop started!";
             senddebug();
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
@@ -103,7 +103,7 @@ public class CommandListener implements Listener {
         }
     }
 
-     public void senddebug() {  // Will make it easier to send debug messages to the console
+     public void senddebug() {  // This will make it easier to send debug messages to the console
         if (plugin.getConfig().getBoolean("debug") == true) {
             System.out.println("[" + plugin.getDescription().getName() + "] " + debugmsg);
 
