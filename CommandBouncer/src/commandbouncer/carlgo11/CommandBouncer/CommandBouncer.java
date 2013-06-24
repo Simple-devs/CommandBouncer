@@ -26,11 +26,14 @@ public class CommandBouncer extends JavaPlugin {
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
         this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled");
-        try {
-				Metrics metrics = new Metrics(this); metrics.start();
-				} catch (IOException e) { 
-				System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
-				}
+        if (getConfig().getBoolean("opt-out") == false) {
+            try {
+                Metrics metrics = new Metrics(this);
+                metrics.start();
+            } catch (IOException e) {
+                System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
+            }
+        }
         checkcmd();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
@@ -43,43 +46,41 @@ public class CommandBouncer extends JavaPlugin {
     public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
         String prefix = ChatColor.GREEN + "[" + getDescription().getName() + "] " + ChatColor.RESET;
         String badperm = ChatColor.RED + "Error: You don't have permission to perform that action!";
-        
-        
+
+
         if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {
-            
+
             if (args.length == 0) { // EXAMPLE: /cmd arg0 arg1 arg2
-                if(sender.hasPermission("commandbouncer.cmd.commandbouncer") || sender.hasPermission("CommandBouncer.*")){
-                sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
-                sender.sendMessage("");
-                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer" + ChatColor.YELLOW + " Shows all avible commands");
-                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
-                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer List" + ChatColor.YELLOW + " List all the commands that the plugin listens on");
-            } else {
+                if (sender.hasPermission("commandbouncer.cmd.commandbouncer") || sender.hasPermission("CommandBouncer.*")) {
+                    sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
+                    sender.sendMessage("");
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer" + ChatColor.YELLOW + " Shows all avible commands");
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer List" + ChatColor.YELLOW + " List all the commands that the plugin listens on");
+                } else {
                     sender.sendMessage(prefix + badperm);
                 }
             } else if (args.length == 1) {
-                
+
                 if (args[0].equalsIgnoreCase("reload")) {
-                    if(sender.hasPermission("commandbouncer.cmd.commandbouncer.reload") || sender.hasPermission("CommandBouncer.*")) {
-                    this.reloadConfig();
-                    //checkcmd();
-                    sender.sendMessage(prefix + ChatColor.GREEN + "Config reloaded!");
-                } else {
-                       sender.sendMessage(prefix + badperm);
+                    if (sender.hasPermission("commandbouncer.cmd.commandbouncer.reload") || sender.hasPermission("CommandBouncer.*")) {
+                        this.reloadConfig();
+                        //checkcmd();
+                        sender.sendMessage(prefix + ChatColor.GREEN + "Config reloaded!");
+                    } else {
+                        sender.sendMessage(prefix + badperm);
                     }
                 } else {
-                    /*if(args[0].equalsIgnoreCase("list")) {
-                        sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
-                        sender.sendMessage("");
-                        //for loop here?
+                    /*if(args[0].equalsIgnoreCase("list")) { 
+                     sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + getDescription().getName() + ChatColor.YELLOW + " ============");
+                     sender.sendMessage("");
+                     //for loop here?
                         
-                    } */
+                     } */
                     // more 1 arg commands here:
-                    
                 }
             } else if (args.length == 2) {
                 // Add code here?
-                
             }
         }
         return true;
@@ -98,23 +99,22 @@ public class CommandBouncer extends JavaPlugin {
     }
 
     public void checkcmd() {
-
-        for(a = a; b !=c; a++){
-            if(getConfig().contains("cmd"+a)){
+        for (a = a; b != c; a++) {
+            if (getConfig().contains("cmd" + a)) {
             } else {
                 b++;
             }
         }
-        
-        if(b == c ){
+
+        if (b == c) {
             if (getConfig().getBoolean("debug") == true) {
-            System.out.println("While loop closed");
+                System.out.println("While loop closed");
             }
-            getLogger().info("Loaded "+a+" cmds from the config!");
-        } 
+            getLogger().info("Loaded " + a + " cmds from the config!");
+        }
     }
 
-    public void onError() {                                                   
+    public void onError() {
         System.out.println("============ CommandBouncer ============");
         System.out.println("ERROR MESSAGE STARTING: ");
         System.out.println("");
