@@ -1,4 +1,4 @@
-package commandbouncer.carlgo11.CommandBouncer;
+package com.carlgo11.CommandBouncer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;

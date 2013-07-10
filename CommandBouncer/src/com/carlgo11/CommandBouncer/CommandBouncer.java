@@ -1,7 +1,7 @@
-package commandbouncer.carlgo11.CommandBouncer;
+package com.carlgo11.CommandBouncer;
 
+import com.carlgo11.CommandBouncer.player.CommandListener;
 import org.bukkit.plugin.java.JavaPlugin;
-import commandbouncer.carlgo11.CommandBouncer.player.*;
 import java.io.File;
 import java.io.IOException;
 import org.bukkit.ChatColor;

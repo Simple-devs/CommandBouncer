@@ -1,8 +1,8 @@
-package commandbouncer.carlgo11.CommandBouncer.player;
+package com.carlgo11.CommandBouncer.player;
 
+import com.carlgo11.CommandBouncer.CommandBouncer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import commandbouncer.carlgo11.CommandBouncer.*;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
