@@ -16,12 +16,12 @@ public class CommandBouncer extends JavaPlugin {
     public static String errormsg = null;
 
     public void onEnable() {
+        this.reloadConfig();
         this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled");
         checkcmd();
         checkConfig();
         checkMetrics();
         checkUpdate();
-        
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
 

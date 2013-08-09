@@ -35,7 +35,6 @@ public class CommandListener implements Listener {
         Player player = e.getPlayer();
         String cmd = e.getMessage();
         final String[] asd = e.getMessage().split(" ");
-        List<String> ignoreworlds = plugin.getConfig().getStringList("ignored-worlds");
 
         for (int a = 1; a != CommandBouncer.a; a++) {
             debugmsg = "forloop started!";
@@ -47,16 +46,16 @@ public class CommandListener implements Listener {
                     if (plugin.getConfig().getBoolean("cmd" + a + "-disable") == true) {
                         e.setCancelled(true);
                         System.out.println(player.getName() + " issued server command: " + cmd.toString());
+                       
+                    } else {
                     }
                 } else {
                     e.setCancelled(true);
                     System.out.println(player.getName() + " issued server command: " + cmd.toString());
                 }
                 if (player.hasPermission("CommandBouncer.listen.cmd" + a) || player.hasPermission("CommandBouncer.listen.*") || player.hasPermission("CommandBouncer.*")) { // Checks if player has permission
-                    if (!plugin.getConfig().getStringList("ignored-worlds").contains(player.getWorld())) { //Not working at the moment! Can anyone look at this?
                         debugmsg = player.getName() + " is not in a disabled world!";
                         senddebug();
-                        e.setCancelled(true); // Disables the command
                         if (plugin.getConfig().contains("console" + a)) {
                             String dastring = plugin.getConfig().getString("console" + a);
                             String replaceinput = dastring.replaceAll("%player%", player.getName());
@@ -86,12 +85,6 @@ public class CommandListener implements Listener {
                             debugmsg = "No player bnc string found!";
                             senddebug();
                         }
-
-                    } else {
-                        debugmsg = player.getName() + " is in a disabled world!";
-                        senddebug();
-                        System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
-                    }
 
                 } else {
                     debugmsg = player.getName() + " don't have permission for cmd" + a;
