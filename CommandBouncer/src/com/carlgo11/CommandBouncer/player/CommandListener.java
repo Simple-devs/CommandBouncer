@@ -26,23 +26,29 @@ public class CommandListener implements Listener {
 
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent e) {
-        if (plugin.getConfig().getBoolean("debug") == true) {
-            System.out.println("[" + plugin.getDescription().getName() + "] " + "chat registred!");
-            System.out.println("[" + plugin.getDescription().getName() + "] " + "a = " + CommandBouncer.a);
-            System.out.println("[" + plugin.getDescription().getName() + "] " + "b = " + CommandBouncer.b);
-        }
+        debugmsg = "chat registred!";
+        senddebug();
+        debugmsg = "a = " + CommandBouncer.a;
+        senddebug();
+        debugmsg = "b = " + CommandBouncer.b;
+        senddebug();
         Player player = e.getPlayer();
         String cmd = e.getMessage();
         final String[] asd = e.getMessage().split(" ");
-
         List<String> ignoreworlds = plugin.getConfig().getStringList("ignored-worlds");
+
         for (int a = 1; a != CommandBouncer.a; a++) {
             debugmsg = "forloop started!";
             senddebug();
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
                 debugmsg = "matches cmd" + a;
                 senddebug();
-                if (plugin.getConfig().getBoolean("disable-on-match") == true) {
+                if (plugin.getConfig().contains("cmd" + a + "-disable")) {
+                    if (plugin.getConfig().getBoolean("cmd" + a + "-disable") == true) {
+                        e.setCancelled(true);
+                        System.out.println(player.getName() + " issued server command: " + cmd.toString());
+                    }
+                } else {
                     e.setCancelled(true);
                     System.out.println(player.getName() + " issued server command: " + cmd.toString());
                 }
@@ -109,7 +115,6 @@ public class CommandListener implements Listener {
     public void senddebug() {  // This will make it easier to send debug messages to the console
         if (plugin.getConfig().getBoolean("debug") == true) {
             System.out.println("[" + plugin.getDescription().getName() + "] " + debugmsg);
-
             /**
              * To send debug messages use debugmsg = "debug message"; then to
              * send the message to this method use senddebug();

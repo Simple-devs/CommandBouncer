@@ -11,23 +11,16 @@
 #
 # Join our irc: http://bit.ly/cmdbouncerirc
 # 
-# 
+ 
 ############################################################
 # +------------------------------------------------------+ #
 # |                  General Settings                    | #
 # +------------------------------------------------------+ #
 ############################################################
 
-# If you let us send a stats service send information about how this plugin is used
-# true/false (false to send)
-opt-out: false
-
-# Does this plugin not work? Set "debug" to true and pastie your log to a dev
+# Does this plugin not work? Set "debug" to true and pastie your server.log to an developer
 # true/false
 debug: false
-#
-# Want the plugin to disable the outgoing message when a match is found?
-disable-on-match: true
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -35,17 +28,14 @@ disable-on-match: true
 # +------------------------------------------------------+ #
 ############################################################
 
-# Do you want this plugin NOT to interact in any worlds? enter them below!
-ignored-worlds:
-    - superawesome_world
-    - even_more_awesome_world
+# Do you want the plugin to update automaticly when a new version is avible?
+auto-update: true
 
-#  - And this one
+# Do you want to disable the incomming message when a command matches a commnad listed below?
+# Example: player types /op, cmd is set to disable = the incomming message won't be blocked. 
+# If cmd is not listed below it will be set to true by defualt.
 
-# Enter the players you don't want the plugin to listen to.
-ignored-players:
-   - KHobbits
-   - anminecrafter
+cmd1-disable: true
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -54,18 +44,17 @@ ignored-players:
 ############################################################
 
 # Enter the commands you want the plugin to listen on use the same number on the listening command as on the bouncer command!
-
 # EXAMPLE: cmd1: op
 cmd1: hi
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                   bounce Commands                    | #
+# |                   Bounce Commands                    | #
 # +------------------------------------------------------+ #
 ############################################################
 
 # Enter the commands that you want the plugin to execute when a player types the given command
 
 # EXAMPLE: console1: ban %player% don't try to give yourself op!
-console1: say Good day %player%!
+console1: say Hello %player%!
 
