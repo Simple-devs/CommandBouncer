@@ -6,14 +6,14 @@ This plugin executes a given command when a player executes a certain command
 
 + Bukkit: http://dev.bukkit.org/server-mods/commandbouncer/
 
-+ For developing please use "DEV" as branch
++ For developing please use "0.2x" as branch
 
 Development
 ==============
 
 To help us develop this plugin you'll need:
 
-- Only work in Branch: DEV
+- For developing of version 0.2 use Branch: 0.2x
 
 - GitHub
 
