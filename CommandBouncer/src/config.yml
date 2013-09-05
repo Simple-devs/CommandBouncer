@@ -44,8 +44,8 @@ cmd1-disable: true
 ############################################################
 
 # Enter the commands you want the plugin to listen on use the same number on the listening command as on the bouncer command!
-# EXAMPLE: cmd1: op
-cmd1: hi
+# EXAMPLE: cmd1: hi
+
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -55,6 +55,5 @@ cmd1: hi
 
 # Enter the commands that you want the plugin to execute when a player types the given command
 
-# EXAMPLE: console1: ban %player% don't try to give yourself op!
-console1: say Hello %player%!
+# EXAMPLE: console1: say hi %player&
 
