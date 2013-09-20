@@ -1,11 +1,9 @@
 package com.carlgo11.CommandBouncer;
 
 import com.carlgo11.CommandBouncer.updater.Updater;
-import com.carlgo11.CommandBouncer.metrics.Metrics;
 import com.carlgo11.CommandBouncer.player.CommandListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
-import java.io.IOException;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -20,7 +18,6 @@ public class CommandBouncer extends JavaPlugin {
         this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled");
         checkcmd();
         checkConfig();
-        checkMetrics();
         checkUpdate();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
@@ -46,14 +43,7 @@ public class CommandBouncer extends JavaPlugin {
         }
     }
 
-    public void checkMetrics() {
-        try {
-            Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (IOException e) {
-            System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
-        }
-    }
+
 
     @Override
     public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
