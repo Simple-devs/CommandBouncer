@@ -3,9 +3,7 @@ package com.carlgo11.CommandBouncer.player;
 import com.carlgo11.CommandBouncer.CommandBouncer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import java.util.List;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
@@ -61,8 +59,6 @@ public class CommandListener implements Listener {
                             String replaceinput = dastring.replaceAll("%player%", player.getName());
                             String replaceinput2 = replaceinput.replaceAll("%world%", player.getWorld().getName());
                             debugmsg = "dastring:" + replaceinput;
-                            senddebug();
-                            debugmsg = "Console bnc string found!"; // Do we need to use this anymore? Waiting on second confirmation from another dev
                             senddebug();
                             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceinput2);
                             debugmsg = "Console" + a + ": " + plugin.getConfig().getString("console" + a);
