@@ -4,6 +4,7 @@ import com.carlgo11.CommandBouncer.updater.Updater;
 import com.carlgo11.CommandBouncer.player.CommandListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
+import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -15,7 +16,7 @@ public class CommandBouncer extends JavaPlugin {
 
     public void onEnable() {
         this.reloadConfig();
-        this.getLogger().info("[" + getDescription().getName() + "] " + getDescription().getName() + " " + getDescription().getVersion() + " is enabled");
+        this.getLogger().log(Level.INFO, "[{0}] {1} {2} is enabled", new Object[]{getDescription().getName(), getDescription().getName(), getDescription().getVersion()});
         checkcmd();
         checkConfig();
         checkUpdate();
@@ -23,7 +24,7 @@ public class CommandBouncer extends JavaPlugin {
     }
 
     public void onDisable() {
-        this.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " is disabled!");
+        this.getLogger().log(Level.INFO, "{0} {1} is disabled!", new Object[]{getDescription().getName(), getDescription().getVersion()});
     }
 
     public void checkConfig() {
@@ -128,7 +129,6 @@ public class CommandBouncer extends JavaPlugin {
                 System.out.println("While loop closed");
             }
 
-            int plaina = a -= 2;
             getLogger().info("Loaded " + a + " cmds from the config!");
         }
     }
