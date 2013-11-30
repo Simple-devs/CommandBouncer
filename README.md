@@ -5,14 +5,19 @@ CommandBouncer
 
 This plugin executes a given command when a player executes a certain command
 
-+ Authors: Carlgo11 (Head-DEV), Cabbex (DEV), psgs (DEV)
++ **Authors:** Carlgo11 (Head-DEV), Cabbex (DEV), psgs (DEV)
 
-+ Bukkit: http://dev.bukkit.org/server-mods/commandbouncer/
++ **Bukkit:** http://dev.bukkit.org/server-mods/commandbouncer/
 
-+ For developing please use "0.2x" as branch
++ **IRC:** http://tiny.cc/cmdbnc-irc
+
+
+
++ IR
 
 Development
 ==============
+For developing please the branch `0.2x`.
 
 To help us develop this plugin you'll need:
 
@@ -22,4 +27,4 @@ To help us develop this plugin you'll need:
 
 - Maven
 
-- A bukkit test server with the latest CraftBukkit
+- A bukkit test server with the latest CraftBukkit `http://dl.bukkit.org/downloads/craftbukkit/list/dev/`
