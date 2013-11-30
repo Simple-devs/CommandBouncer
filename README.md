@@ -1,5 +1,6 @@
 CommandBouncer
 ==============
+[![Build Status](https://api.travis-ci.org/Simple-devs/CommandBouncer.png?)](https://travis-ci.org/JuliaLang/julia)
 This plugin executes a given command when a player executes a certain command
 
 + Authors: Carlgo11 (Head-DEV), Cabbex (DEV), psgs (DEV)
