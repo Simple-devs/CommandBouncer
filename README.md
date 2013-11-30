@@ -27,4 +27,4 @@ To help us develop this plugin you'll need:
 
 - Maven
 
-- A bukkit test server with the latest CraftBukkit `http://dl.bukkit.org/downloads/craftbukkit/list/dev/`
+- A bukkit test server with the latest CraftBukkit `http://dl.bukkit.org/latest-dev/craftbukkit.jar`
