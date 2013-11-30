@@ -17,7 +17,7 @@ This plugin executes a given command when a player executes a certain command
 
 Development
 ==============
-For developing please the branch `0.2x`.
+For developing please the branch `0.3`.
 
 To help us develop this plugin you'll need:
 
