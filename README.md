@@ -12,9 +12,6 @@ This plugin executes a given command when a player executes a certain command
 + **IRC:** http://tiny.cc/cmdbnc-irc
 
 
-
-+ IR
-
 Development
 ==============
 For developing please use the branch `0.3`.
