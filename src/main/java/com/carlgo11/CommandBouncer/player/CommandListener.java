@@ -1,6 +1,7 @@
 package com.carlgo11.CommandBouncer.player;
 
 import com.carlgo11.CommandBouncer.CommandBouncer;
+import java.util.logging.Level;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.Bukkit;
@@ -21,27 +22,21 @@ public class CommandListener implements Listener {
         super();
         this.plugin = plug;
     }
-    String debugmsg = null;
 
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent e)
     {
-        debugmsg = "chat registred!";
-        senddebug();
-        debugmsg = "a = " + CommandBouncer.a;
-        senddebug();
-        debugmsg = "b = " + CommandBouncer.b;
-        senddebug();
+        senddebug("chat registred!");
+        senddebug("a = " + CommandBouncer.a);
+        senddebug("b = " + CommandBouncer.b);
         Player player = e.getPlayer();
         String cmd = e.getMessage();
         final String[] asd = e.getMessage().split(" ");
 
         for (int a = 1; a != CommandBouncer.a; a++) {
-            debugmsg = "forloop started!";
-            senddebug();
+            senddebug("forloop started!");
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
-                debugmsg = "matches cmd" + a;
-                senddebug();
+                senddebug("matches cmd" + a);
 
                 if (player.hasPermission("CommandBouncer.listen.cmd" + a) || player.hasPermission("CommandBouncer.listen.*") || player.hasPermission("CommandBouncer.*")) { // Checks if player has permission
                     if (plugin.getConfig().contains("cmd" + a + "-disable")) {
@@ -55,39 +50,31 @@ public class CommandListener implements Listener {
                         e.setCancelled(true);
                         System.out.println(player.getName() + " issued server command: " + cmd.toString());
                     }
-                    debugmsg = player.getName() + " is not in a disabled world!";
-                    senddebug();
+                    senddebug(player.getName() + " is not in a disabled world!");
                     if (plugin.getConfig().contains("console" + a)) {
                         String dastring = plugin.getConfig().getString("console" + a);
                         String replaceinput = dastring.replaceAll("%player%", player.getName());
                         String replaceinput2 = replaceinput.replaceAll("%world%", player.getWorld().getName());
-                        debugmsg = "dastring:" + replaceinput;
-                        senddebug();
+                        senddebug("dastring:" + replaceinput);
                         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaceinput2);
-                        debugmsg = "Console" + a + ": " + plugin.getConfig().getString("console" + a);
-                        senddebug();
+                        senddebug("Console" + a + ": " + plugin.getConfig().getString("console" + a));
                     } else {
-                        debugmsg = "No console bnc string found!";
-                        senddebug();
+                        senddebug("No console bnc string found!");
                     }
 
                     if (plugin.getConfig().contains("player" + a)) {
                         String dastring = plugin.getConfig().getString("player" + a);
                         String replaceinput = dastring.replaceAll("%player%", player.getName());
                         String replaceinput2 = replaceinput.replaceAll("%world%", player.getWorld().getName());
-                        debugmsg = "dastring:" + dastring;
-                        senddebug();
-                        debugmsg = "player bnc string found!";
-                        senddebug();
+                        senddebug("dastring:" + dastring);
+                        senddebug("player bnc string found!");
                         Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(e.getPlayer().getName()), replaceinput2);
                     } else {
-                        debugmsg = "No player bnc string found!";
-                        senddebug();
+                        senddebug("No player bnc string found!");
                     }
 
                 } else {
-                    debugmsg = player.getName() + " don't have permission for cmd" + a;
-                    senddebug();
+                    senddebug(player.getName() + " don't have permission for cmd" + a);
                     if (plugin.getConfig().getBoolean("debug") == true) {
                         System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
                     }
@@ -104,10 +91,10 @@ public class CommandListener implements Listener {
         }
     }
 
-    public void senddebug()
+    public void senddebug(String s)
     {  // This will make it easier to send debug messages to the console
         if (plugin.getConfig().getBoolean("debug") == true) {
-            System.out.println("[" + plugin.getDescription().getName() + "] " + debugmsg);
+            plugin.getLogger().log(Level.INFO, "[Debug] "+s);
             /**
              * To send debug messages use debugmsg = "debug message"; then to
              * send the message to this method use senddebug();

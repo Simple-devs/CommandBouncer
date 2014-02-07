@@ -8,10 +8,14 @@ commands:
     aliases: [cmdbnc, ccommandbouncer]
     description: Main command of CommandBouncer
 permissions:
-  CommandBouncer.*:
+  commandbouncer.*:
     default: op
     description: Give players permission to use everything
-  CommandBouncer.listen.*:
+    children:
+      commandbouncer.listen.*: true
+      commandbouncer.cmd.commandbouncer: true
+      commandbouncer.cmd.commandbouncer.reload: true
+  commandbouncer.listen.*:
     default: op
     description: Plugin will listen on every command the player executes
   commandbouncer.cmd.commandbouncer:

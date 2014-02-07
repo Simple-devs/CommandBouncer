@@ -4,19 +4,18 @@ import com.carlgo11.CommandBouncer.updater.Updater;
 import com.carlgo11.CommandBouncer.player.CommandListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
-import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class CommandBouncer extends JavaPlugin {
 
     public static CommandBouncer plugin;
-    public static String errormsg = null;
 
     public void onEnable() {
         this.reloadConfig();
-        this.getLogger().log(Level.INFO, "[{0}] {1} {2} is enabled", new Object[]{getDescription().getName(), getDescription().getName(), getDescription().getVersion()});
+        this.getLogger().info(getDescription().getName() + " v"+getDescription().getVersion() + " is enabled.");
         checkcmd();
         checkConfig();
         checkUpdate();
@@ -24,7 +23,7 @@ public class CommandBouncer extends JavaPlugin {
     }
 
     public void onDisable() {
-        this.getLogger().log(Level.INFO, "{0} {1} is disabled!", new Object[]{getDescription().getName(), getDescription().getVersion()});
+        this.getLogger().info(getDescription().getName() + " v"+getDescription().getVersion() + " is disalbed.");
     }
 
     public void checkConfig() {
@@ -39,7 +38,7 @@ public class CommandBouncer extends JavaPlugin {
     
     public void checkUpdate(){
         if (getConfig().getBoolean("auto-update") == true) {
-            Updater updater = new Updater(this, "commandbouncer/", this.getFile(), Updater.UpdateType.DEFAULT, true);
+            Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.DEFAULT, true);
         } else {
         }
     }
@@ -49,7 +48,6 @@ public class CommandBouncer extends JavaPlugin {
     @Override
     public boolean onCommand(final CommandSender sender, Command cmd, String commandLabel, String[] args) {         //Used when we wan't to add a command fairly :P
         String prefix = ChatColor.GREEN + "[" + getDescription().getName() + "] " + ChatColor.RESET;
-        String badperm = ChatColor.RED + "Error: You don't have permission to perform that action!";
 
         if (cmd.getName().equalsIgnoreCase("CommandBouncer")) {
             if (args.length == 0) { // EXAMPLE: /cmd arg0 arg1 arg2
@@ -60,7 +58,7 @@ public class CommandBouncer extends JavaPlugin {
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer List" + ChatColor.YELLOW + " List all the commands that the plugin listens on");
                 } else {
-                    sender.sendMessage(prefix + badperm);
+                    this.badpermsSender(sender);
                 }
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
@@ -69,7 +67,7 @@ public class CommandBouncer extends JavaPlugin {
                         getServer().getPluginManager().enablePlugin(this);
                         sender.sendMessage(prefix + ChatColor.GREEN + "Config reloaded!");
                     } else {
-                        sender.sendMessage(prefix + badperm);
+                        this.badpermsSender(sender);
                     }
                 }
 
@@ -99,7 +97,7 @@ public class CommandBouncer extends JavaPlugin {
                         }
                         sender.sendMessage("" + message);
                     } else {
-                        sender.sendMessage(prefix + badperm);
+                        this.badpermsSender(sender);
                     }
                     // more 1 arg commands here:
                 }
@@ -133,7 +131,7 @@ public class CommandBouncer extends JavaPlugin {
         }
     }
 
-    public void onError() {
+    public void onError(String errormsg) {
         System.out.println("============ CommandBouncer ============");
         System.out.println("ERROR MESSAGE STARTING: ");
         System.out.println("");
@@ -144,4 +142,12 @@ public class CommandBouncer extends JavaPlugin {
         errormsg = null;
         this.getServer().getPluginManager().disablePlugin(this);
     }
+    public void badpermsPlayer(Player p){
+        p.sendMessage(ChatColor.RED + "Error: You don't have permission to perform that action!");
+    }
+    public void badpermsSender(CommandSender p){
+        
+    }
+    
+    
 }
