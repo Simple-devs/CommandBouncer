@@ -5,6 +5,7 @@ import com.carlgo11.CommandBouncer.updater.Updater;
 import com.carlgo11.CommandBouncer.player.CommandListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
+import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -71,7 +72,6 @@ public class CommandBouncer extends JavaPlugin {
             if (getConfig().getBoolean("debug") == true) {
                 System.out.println("While loop closed");
             }
-
             getLogger().info("Loaded " + a + " cmds from the config!");
         }
     }
@@ -94,5 +94,11 @@ public class CommandBouncer extends JavaPlugin {
         
     }
     
+    public void senddebug(String s)
+    {
+        if (plugin.getConfig().getBoolean("debug") == true) {
+            plugin.getLogger().log(Level.INFO, "[Debug] " + s);
+        }
+    }
     
 }

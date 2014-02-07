@@ -12,10 +12,10 @@ permissions:
     default: op
     description: Give players permission to use everything
     children:
-      commandbouncer.listen.*: true
+      commandbouncer.listen.cmd*: true
       commandbouncer.cmd.commandbouncer: true
       commandbouncer.cmd.commandbouncer.reload: true
-  commandbouncer.listen.*:
+  commandbouncer.listen.cmd*:
     default: op
     description: Plugin will listen on every command the player executes
   commandbouncer.cmd.commandbouncer:
