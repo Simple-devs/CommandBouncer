@@ -2,18 +2,12 @@ package com.carlgo11.CommandBouncer.player;
 
 import com.carlgo11.CommandBouncer.Checks;
 import com.carlgo11.CommandBouncer.CommandBouncer;
-import java.util.logging.Level;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-/**
- *
- * @author Carlgo11
- *
- */
 public class CommandListener implements Listener {
 
     CommandBouncer plugin;
@@ -27,7 +21,6 @@ public class CommandListener implements Listener {
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent e)
     {
-        plugin.senddebug("chat registred!");
         plugin.senddebug("a = " + CommandBouncer.a);
         plugin.senddebug("b = " + CommandBouncer.b);
         Player player = e.getPlayer();
@@ -80,7 +73,7 @@ public class CommandListener implements Listener {
                         }
 
                     } else {
-                        plugin.senddebug(player.getWorld() + " is a disabled world.");
+                        plugin.senddebug(player.getWorld().getName() + " is a disabled world.");
                     }
                 } else {
                     plugin.senddebug(player.getName() + " is an ignored player.");

@@ -14,9 +14,10 @@ public class CommandBouncer extends JavaPlugin {
 
     public static CommandBouncer plugin;
 
-    public void onEnable() {
+    public void onEnable()
+    {
         this.reloadConfig();
-        this.getLogger().info(getDescription().getName() + " v"+getDescription().getVersion() + " is enabled.");
+        this.getLogger().info(getDescription().getName() + " v" + getDescription().getVersion() + " is enabled.");
         checkcmd();
         checkConfig();
         checkUpdate();
@@ -24,16 +25,18 @@ public class CommandBouncer extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
 
-    public void onDisable() {
-        this.getLogger().info(getDescription().getName() + " v"+getDescription().getVersion() + " is disabled.");
+    public void onDisable()
+    {
+        this.getLogger().info(getDescription().getName() + " v" + getDescription().getVersion() + " is disabled.");
     }
-    
+
     public void commands()
     {
         getCommand("CommandBouncer").setExecutor(new CommandBouncerCommand(this));
     }
 
-    public void checkConfig() {
+    public void checkConfig()
+    {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
             this.saveDefaultConfig();
@@ -42,22 +45,21 @@ public class CommandBouncer extends JavaPlugin {
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
     }
-    
-    public void checkUpdate(){
+
+    public void checkUpdate()
+    {
         if (getConfig().getBoolean("auto-update") == true) {
             Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.DEFAULT, true);
         } else {
         }
     }
 
-
-
-    
     public static int a = 1; // cmd checker
     public static int b = 0; // Error checker
     public static int c = 3; // Max errors allowed int
 
-    public void checkcmd() {
+    public void checkcmd()
+    {
         a = 1;
         b = 0;
         c = 3;
@@ -76,7 +78,8 @@ public class CommandBouncer extends JavaPlugin {
         }
     }
 
-    public void onError(String errormsg) {
+    public void onError(String errormsg)
+    {
         System.out.println("============ CommandBouncer ============");
         System.out.println("ERROR MESSAGE STARTING: ");
         System.out.println("");
@@ -87,18 +90,22 @@ public class CommandBouncer extends JavaPlugin {
         errormsg = null;
         this.getServer().getPluginManager().disablePlugin(this);
     }
-    public void badpermsPlayer(Player p){
+
+    public void badpermsPlayer(Player p)
+    {
         p.sendMessage(ChatColor.RED + "Error: You don't have permission to perform that action!");
     }
-    public void badpermsSender(CommandSender p){
+
+    public void badpermsSender(CommandSender p)
+    {
         p.sendMessage(ChatColor.RED + "Error: You don't have permission to perform that action!");
     }
-    
+
     public void senddebug(String s)
     {
         if (this.getConfig().getBoolean("debug")) {
             this.getLogger().log(Level.INFO, "[Debug] " + s);
         }
     }
-    
+
 }
