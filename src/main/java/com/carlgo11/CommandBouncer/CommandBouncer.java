@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 public class CommandBouncer extends JavaPlugin {
 
     public static CommandBouncer plugin;
+    public boolean update = false;
 
     public void onEnable()
     {
@@ -50,9 +51,11 @@ public class CommandBouncer extends JavaPlugin {
 
     public void checkUpdate()
     {
-        if (getConfig().getBoolean("auto-update") == true) {
+        if (getConfig().getBoolean("auto-update")) {
             Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.DEFAULT, true);
-        } else {
+        } else if(!getConfig().getString("warn-update").equalsIgnoreCase("none")){
+            Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, true);
+            update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
         }
     }
     
@@ -65,6 +68,13 @@ public class CommandBouncer extends JavaPlugin {
         } catch (IOException ex) {
             System.out.println("[" + getDescription().getName() + "] " + "Error Submitting stats! " + "Output: " + ex.toString());
         }
+    }
+    
+    public void forceUpdate(CommandSender p, String prefix)
+    {
+        p.sendMessage(prefix + " " + ChatColor.GREEN + "Downloading the latest "+getDescription().getName()+"...");
+        Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
+        p.sendMessage(prefix + " " + ChatColor.GREEN + getDescription().getName() + " updated!");
     }
 
     public static int a = 1; // cmd checker

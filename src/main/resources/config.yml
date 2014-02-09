@@ -48,7 +48,7 @@ disabled-worlds:
 
 # [Instructions here]
 ignored-players:
-- a_ignored_user
+- iaccidentally
 - anminecrafter
 # Do you want to disable the incomming message when a command matches a commnad listed below?
 # Example: player types /op, cmd is set to disable = the incomming message won't be blocked. 

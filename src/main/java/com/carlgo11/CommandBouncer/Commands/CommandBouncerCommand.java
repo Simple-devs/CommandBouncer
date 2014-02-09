@@ -32,6 +32,8 @@ public class CommandBouncerCommand implements CommandExecutor {
                 report(sender, prefix);
             } else if (args[0].equalsIgnoreCase("support")) {
                 support(sender, prefix);
+            } else if (args[0].equalsIgnoreCase("update")){
+                update(sender, prefix);
             }
         } else if (args.length == 2) {
 
@@ -48,6 +50,7 @@ public class CommandBouncerCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Report" + ChatColor.YELLOW + " Upload a report to pastebin");
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Support" + ChatColor.YELLOW + " Get help from a developer");
+            sender.sendMessage(updatemessage());
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer List" + ChatColor.YELLOW + " List all the commands that the plugin listens on");
         } else {
             plugin.badpermsSender(sender);
@@ -127,5 +130,21 @@ public class CommandBouncerCommand implements CommandExecutor {
         } else {
             plugin.badpermsSender(sender);
         }
+    }
+    void update(CommandSender sender, String prefix){
+        if(sender.hasPermission("commandbouncer.cmd.commandbouncer.update")){
+            plugin.forceUpdate(sender, prefix);
+        }else{
+            plugin.badpermsSender(sender);
+        }
+    }
+    String updatemessage(){
+        String d = null;
+        if(plugin.update){
+            d = ChatColor.GRAY +""+ ChatColor.MAGIC + "-" + ChatColor.RESET + ChatColor.GRAY + " /" + ChatColor.GREEN + "CommandBouncer Update" + ChatColor.YELLOW + " Update to the latest version!";
+        }else{
+        d = ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Update" + ChatColor.YELLOW + " Force a download of the latest version.";
+                }
+        return d;
     }
 }
