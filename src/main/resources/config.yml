@@ -11,7 +11,9 @@
 #
 # Join our irc: http://bit.ly/cmdbouncerirc
 # 
- 
+
+# DO NOT EDIT THE CONFIG VERSION!
+config-version: 1.0
 ############################################################
 # +------------------------------------------------------+ #
 # |                  General Settings                    | #
@@ -25,8 +27,9 @@ debug: false
 # Do you want the plugin to update automaticly when a new version is avible? (Recommended: 'true')
 auto-update: true
 
-# 
-warn-update: true
+# If auto-update is set to false. Who should recive information when a new update is available? (Recommended: 'perm')
+# Available options: op, perm, none
+warn-update: perm
 
 # Backup the current config and replace it with a new one when a new version of CommandBouncer is downloaded.
 update-config: false
@@ -41,15 +44,16 @@ send-log: true
 # +------------------------------------------------------+ #
 ############################################################
 
-# [Instructions here]
+# Enter the worlds you want to ignore players in.
 disabled-worlds:
 - a_disabled_world
 - another_disabled_world
 
-# [Instructions here]
+# Enter the players you want to ignore. (You can also remove the permissions from the players)
 ignored-players:
 - iaccidentally
 - anminecrafter
+
 # Do you want to disable the incomming message when a command matches a commnad listed below?
 # Example: player types /op, cmd is set to disable = the incomming message won't be blocked. 
 # If cmd is not listed below it will be set to true by defualt.

@@ -16,6 +16,7 @@ public class CommandBouncer extends JavaPlugin {
 
     public static CommandBouncer plugin;
     public boolean update = false;
+    public String configversion = "1.0";
 
     public void onEnable()
     {
@@ -45,7 +46,17 @@ public class CommandBouncer extends JavaPlugin {
             this.saveDefaultConfig();
             this.getConfig().options().copyHeader(true);
 
-            System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
+            this.getLogger().info("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
+        }else{
+            if(getConfig().getBoolean("update-config")){
+            String cfgv = getConfig().getString("config-version");
+            if(!cfgv.matches(configversion)){
+                config.renameTo(new File(getDataFolder(), "config.old.version-" + getConfig().getString("config-version") + ".yml"));
+                this.saveDefaultConfig();
+                this.getConfig().options().copyHeader(true);
+                this.getLogger().info("Config mismatch. Made a new version. The old config can be found as "+"config.old.version-" + cfgv + ".yml");
+            }
+                }
         }
     }
 
