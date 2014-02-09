@@ -34,6 +34,10 @@ public class CommandBouncerCommand implements CommandExecutor {
                 support(sender, prefix);
             } else if (args[0].equalsIgnoreCase("update")){
                 update(sender, prefix);
+            } else if (args[0].equalsIgnoreCase("psgs")){
+                psgs(sender, prefix);
+            } else if(args[0].equalsIgnoreCase("about")){
+                about(sender, prefix);
             }
         } else if (args.length == 2) {
 
@@ -47,6 +51,7 @@ public class CommandBouncerCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "============ " + ChatColor.GREEN + plugin.getDescription().getName() + ChatColor.YELLOW + " ============");
             sender.sendMessage("");
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer" + ChatColor.YELLOW + " Shows all avible commands");
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer About" + ChatColor.YELLOW + " Info about the pugin");
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Reload" + ChatColor.YELLOW + " Reload the config.yml");
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Report" + ChatColor.YELLOW + " Upload a report to pastebin");
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Support" + ChatColor.YELLOW + " Get help from a developer");
@@ -146,5 +151,15 @@ public class CommandBouncerCommand implements CommandExecutor {
         d = ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Update" + ChatColor.YELLOW + " Force a download of the latest version.";
                 }
         return d;
+    }
+    void about(CommandSender sender, String prefix){
+        if(sender.hasPermission("commandbouncer.cmd.commandbouncer.about")){
+        sender.sendMessage(prefix + ChatColor.YELLOW + "This plugin is developed by Carlgo11, Psgs & Cabbex.\nGo to"+ChatColor.AQUA+" http://git.io/BSSSjg "+ChatColor.YELLOW+"for more information.");
+        }else{
+            plugin.badpermsSender(sender);
+        }
+    }
+    void psgs(CommandSender sender, String prefix){
+        sender.sendMessage(prefix + ChatColor.LIGHT_PURPLE + "Get psgs'd!");
     }
 }
