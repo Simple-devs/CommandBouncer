@@ -25,6 +25,9 @@ debug: false
 # Do you want the plugin to update automaticly when a new version is avible? (Recommended: 'true')
 auto-update: true
 
+# 
+warn-update: true
+
 # Backup the current config and replace it with a new one when a new version of CommandBouncer is downloaded.
 update-config: false
 

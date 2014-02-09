@@ -1,10 +1,12 @@
 package com.carlgo11.CommandBouncer;
 
 import com.carlgo11.CommandBouncer.Commands.*;
+import com.carlgo11.CommandBouncer.mcstats.*;
 import com.carlgo11.CommandBouncer.updater.Updater;
-import com.carlgo11.CommandBouncer.player.CommandListener;
+import com.carlgo11.CommandBouncer.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -51,6 +53,17 @@ public class CommandBouncer extends JavaPlugin {
         if (getConfig().getBoolean("auto-update") == true) {
             Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.DEFAULT, true);
         } else {
+        }
+    }
+    
+    public void checkMetrics()
+    {
+        try {
+            Metrics metrics = new Metrics(this);
+            CustomGraphs.graphs(metrics, this);
+            metrics.start();
+        } catch (IOException ex) {
+            System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
         }
     }
 
