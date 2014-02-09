@@ -38,11 +38,21 @@ send-log: true
 # +------------------------------------------------------+ #
 ############################################################
 
+# [Instructions here]
+disabled-worlds:
+- a_disabled_world
+- another_disabled_world
+
+# [Instructions here]
+ignored-players:
+- a_ignored_user
+- anminecrafter
 # Do you want to disable the incomming message when a command matches a commnad listed below?
 # Example: player types /op, cmd is set to disable = the incomming message won't be blocked. 
 # If cmd is not listed below it will be set to true by defualt.
 
-cmd1-disable: true
+disabled-commands:
+- cmd1
 
 ############################################################
 # +------------------------------------------------------+ #

@@ -71,7 +71,7 @@ public class CommandBouncerCommand implements CommandExecutor {
                     message.append("\n" + ChatColor.YELLOW + "cmd" + d + ": " + ChatColor.GRAY);
                     message.append("/" + plugin.getConfig().getString("cmd" + d) + "");
                     if (plugin.getConfig().contains("console" + d)) {
-                        message.append(ChatColor.RESET + " " + ChatColor.BLUE + "/" + plugin.getConfig().getString("console" + d));
+                        message.append(ChatColor.RESET + " " + ChatColor.BLUE + "/" + plugin.getConfig().getStringList("console" + d).toString());
                     }
                     if (plugin.getConfig().contains("player" + d)) {
                         message.append(ChatColor.RESET + " " + ChatColor.RED + "/" + plugin.getConfig().getString("player" + d));
