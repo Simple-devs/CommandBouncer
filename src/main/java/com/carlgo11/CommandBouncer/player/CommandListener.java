@@ -67,9 +67,6 @@ public class CommandListener implements Listener {
 
                         } else {
                             plugin.senddebug(player.getName() + " don't have permission for cmd" + a);
-                            if (plugin.getConfig().getBoolean("debug") == true) {
-                                System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
-                            }
                         }
 
                     } else {
@@ -83,7 +80,6 @@ public class CommandListener implements Listener {
                     System.out.println("[" + plugin.getDescription().getName() + "] " + "No match: cmd" + a);
                     System.out.println("[" + plugin.getDescription().getName() + "] " + player.getName() + "'s-cmd:" + e.getMessage());
                     System.out.println("[" + plugin.getDescription().getName() + "] " + "cmd" + a + ":" + plugin.getConfig().getString("cmd" + a));
-                    System.out.println("[" + plugin.getDescription().getName() + "] " + " ");
                 }
             }
         }

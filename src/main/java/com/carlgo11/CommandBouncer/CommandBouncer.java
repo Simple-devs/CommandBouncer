@@ -21,12 +21,13 @@ public class CommandBouncer extends JavaPlugin {
     public void onEnable()
     {
         this.reloadConfig();
-        this.getLogger().info(getDescription().getName() + " v" + getDescription().getVersion() + " is enabled.");
         checkcmd();
         checkConfig();
         checkUpdate();
         commands();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+        this.getLogger().info(getDescription().getName() + " v" + getDescription().getVersion() + " is enabled.");
     }
 
     public void onDisable()
@@ -90,13 +91,11 @@ public class CommandBouncer extends JavaPlugin {
 
     public static int a = 1; // cmd checker
     public static int b = 0; // Error checker
-    public static int c = 3; // Max errors allowed int
+    public static int c = 1; // Max errors allowed int
 
     public void checkcmd()
     {
-        a = 1;
-        b = 0;
-        c = 3;
+
         for (a = a; b != c; a++) {
             if (getConfig().contains("cmd" + a)) {
             } else {

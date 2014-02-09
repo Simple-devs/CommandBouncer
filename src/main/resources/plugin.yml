@@ -1,11 +1,11 @@
 main: com.carlgo11.CommandBouncer.CommandBouncer
 name: CommandBouncer
-version: 0.3
+version: 0.01
 author: Carlgo11, Cabbex, psgs
 description: This plugin sends a command that's set in the config, when a user types a certain command.
 commands:
   CommandBouncer:
-    aliases: [cmdbnc, ccommandbouncer]
+    aliases: [cmdbnc]
     description: Main command of CommandBouncer
 permissions:
   commandbouncer.*:
@@ -15,6 +15,9 @@ permissions:
       commandbouncer.listen.cmd*: true
       commandbouncer.cmd.commandbouncer: true
       commandbouncer.cmd.commandbouncer.reload: true
+      commandbouncer.cmd.commandbouncer.update: true
+      commandbouncer.cmd.commandbouncer.report: true
+      commandbouncer.cmd.commandbouncer.support: true
   commandbouncer.listen.cmd*:
     default: op
     description: Plugin will listen on every command the player executes
@@ -24,4 +27,13 @@ permissions:
   commandbouncer.cmd.commandbouncer.reload:
     default: op
     description: Give players permission to use /commandbouncer reload
+  commandbouncer.cmd.commandbouncer.report:
+    default: op
+    description: Give players permission to use /commandbouncer report
+  commandbouncer.cmd.commandbouncer.update:
+    default: op
+    description: Give players permission to use /commandbouncer update
+  commandbouncer.cmd.commandbouncer.support:
+    default: op
+    description: Give players permission to use /commandbouncer support
     
