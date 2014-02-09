@@ -30,7 +30,7 @@ public class CommandBouncer extends JavaPlugin {
     
     public void commands()
     {
-        getCommand("simpleautomessage").setExecutor(new CommandBouncerCommand(this));
+        getCommand("CommandBouncer").setExecutor(new CommandBouncerCommand(this));
     }
 
     public void checkConfig() {
@@ -72,7 +72,7 @@ public class CommandBouncer extends JavaPlugin {
             if (getConfig().getBoolean("debug") == true) {
                 System.out.println("While loop closed");
             }
-            getLogger().info("Loaded " + a + " cmds from the config!");
+            this.getLogger().info("Loaded " + a + " cmds from the config!");
         }
     }
 
@@ -91,13 +91,13 @@ public class CommandBouncer extends JavaPlugin {
         p.sendMessage(ChatColor.RED + "Error: You don't have permission to perform that action!");
     }
     public void badpermsSender(CommandSender p){
-        
+        p.sendMessage(ChatColor.RED + "Error: You don't have permission to perform that action!");
     }
     
     public void senddebug(String s)
     {
-        if (plugin.getConfig().getBoolean("debug") == true) {
-            plugin.getLogger().log(Level.INFO, "[Debug] " + s);
+        if (this.getConfig().getBoolean("debug")) {
+            this.getLogger().log(Level.INFO, "[Debug] " + s);
         }
     }
     

@@ -22,14 +22,21 @@
 # true/false
 debug: false
 
+# Do you want the plugin to update automaticly when a new version is avible? (Recommended: 'true')
+auto-update: true
+
+# Backup the current config and replace it with a new one when a new version of CommandBouncer is downloaded.
+update-config: false
+
+# When seeking assistance via /CommandBouncer support/report should the plugin upload your latest.log? (Recommended: 'true')
+send-log: true
+
+
 ############################################################
 # +------------------------------------------------------+ #
 # |                       Settings                       | #
 # +------------------------------------------------------+ #
 ############################################################
-
-# Do you want the plugin to update automaticly when a new version is avible?
-auto-update: true
 
 # Do you want to disable the incomming message when a command matches a commnad listed below?
 # Example: player types /op, cmd is set to disable = the incomming message won't be blocked. 
@@ -55,5 +62,7 @@ cmd1-disable: true
 
 # Enter the commands that you want the plugin to execute when a player types the given command
 
-# EXAMPLE: console1: say hi %player&
+# EXAMPLE: 
+# cmd1:
+# - say hello %player%
 
