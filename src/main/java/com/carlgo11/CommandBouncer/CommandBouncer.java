@@ -63,7 +63,7 @@ public class CommandBouncer extends JavaPlugin {
             CustomGraphs.graphs(metrics, this);
             metrics.start();
         } catch (IOException ex) {
-            System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
+            System.out.println("[" + getDescription().getName() + "] " + "Error Submitting stats! " + "Output: " + ex.toString());
         }
     }
 
