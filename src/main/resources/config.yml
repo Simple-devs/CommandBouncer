@@ -12,7 +12,7 @@
 # Join our irc: http://bit.ly/cmdbouncerirc
 # 
 
-# DO NOT EDIT THE CONFIG VERSION!
+# DO NOT EDIT THE CONFIG-VERSION!
 config-version: 1.0
 ############################################################
 # +------------------------------------------------------+ #
@@ -31,7 +31,7 @@ auto-update: true
 # Available options: op, perm, none
 warn-update: perm
 
-# Backup the current config and replace it with a new one when a new version of CommandBouncer is downloaded.
+# Want to backup the current config and replace it with a new one when a new version of CommandBouncer is downloaded? (Might cause you some extra work when a new version is downloaded)
 update-config: false
 
 # When seeking assistance via /CommandBouncer support/report should the plugin upload your latest.log? (Recommended: 'true')
@@ -55,8 +55,8 @@ ignored-players:
 - anminecrafter
 
 # Do you want to disable the incomming message when a command matches a commnad listed below?
-# Example: player types /op, cmd is set to disable = the incomming message won't be blocked. 
-# If cmd is not listed below it will be set to true by defualt.
+# Example: player types /op & the command is set to be disabled /op won't be executed but the bounce-command will. 
+# If a cmd is not set below it will not be disabled.
 
 disabled-commands:
 - cmd1
@@ -69,7 +69,7 @@ disabled-commands:
 
 # Enter the commands you want the plugin to listen on use the same number on the listening command as on the bouncer command!
 # EXAMPLE: cmd1: hi
-
+cmd1: cmdbnctest
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -80,6 +80,6 @@ disabled-commands:
 # Enter the commands that you want the plugin to execute when a player types the given command
 
 # EXAMPLE: 
-# cmd1:
-# - say hello %player%
+console1:
+- tell %player% hello %player%!
 
