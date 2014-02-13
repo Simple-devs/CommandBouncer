@@ -25,6 +25,7 @@ public class CommandBouncer extends JavaPlugin {
         checkConfig();
         checkUpdate();
         commands();
+        checkMetrics();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         this.getLogger().info(getDescription().getName() + " v" + getDescription().getVersion() + " is enabled.");
