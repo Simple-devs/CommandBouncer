@@ -49,16 +49,16 @@ public class CommandBouncer extends JavaPlugin {
             this.getConfig().options().copyHeader(true);
 
             this.getLogger().info("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
-        }else{
-            if(getConfig().getBoolean("update-config")){
-            String cfgv = getConfig().getString("config-version");
-            if(!cfgv.matches(configversion)){
-                config.renameTo(new File(getDataFolder(), "config.old.version-" + getConfig().getString("config-version") + ".yml"));
-                this.saveDefaultConfig();
-                this.getConfig().options().copyHeader(true);
-                this.getLogger().info("Config mismatch. Made a new version. The old config can be found as "+"config.old.version-" + cfgv + ".yml");
-            }
+        } else {
+            if (getConfig().getBoolean("update-config")) {
+                String cfgv = getConfig().getString("config-version");
+                if (!cfgv.matches(configversion)) {
+                    config.renameTo(new File(getDataFolder(), "config.old.version-" + getConfig().getString("config-version") + ".yml"));
+                    this.saveDefaultConfig();
+                    this.getConfig().options().copyHeader(true);
+                    this.getLogger().info("Config mismatch. Made a new version. The old config can be found as " + "config.old.version-" + cfgv + ".yml");
                 }
+            }
         }
     }
 
@@ -66,12 +66,12 @@ public class CommandBouncer extends JavaPlugin {
     {
         if (getConfig().getBoolean("auto-update")) {
             Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.DEFAULT, true);
-        } else if(!getConfig().getString("warn-update").equalsIgnoreCase("none")){
+        } else if (!getConfig().getString("warn-update").equalsIgnoreCase("none")) {
             Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, true);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
         }
     }
-    
+
     public void checkMetrics()
     {
         try {
@@ -82,10 +82,10 @@ public class CommandBouncer extends JavaPlugin {
             System.out.println("[" + getDescription().getName() + "] " + "Error Submitting stats! " + "Output: " + ex.toString());
         }
     }
-    
+
     public void forceUpdate(CommandSender p, String prefix)
     {
-        p.sendMessage(prefix + " " + ChatColor.GREEN + "Downloading the latest "+getDescription().getName()+"...");
+        p.sendMessage(prefix + " " + ChatColor.GREEN + "Downloading the latest " + getDescription().getName() + "...");
         Updater updater = new Updater(this, 59012, this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
         p.sendMessage(prefix + " " + ChatColor.GREEN + getDescription().getName() + " updated!");
     }

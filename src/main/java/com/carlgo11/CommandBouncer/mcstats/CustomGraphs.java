@@ -36,6 +36,7 @@ public class CustomGraphs {
             }
         }
     }
+
     static void graph3(Metrics metrics, CommandBouncer plugin)
     {
         //Graph1

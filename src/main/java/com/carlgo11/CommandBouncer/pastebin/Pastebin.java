@@ -31,7 +31,7 @@ public class Pastebin {
             throws UnsupportedEncodingException
     {
         String content = URLEncoder.encode(code, "UTF-8");
-        String title = URLEncoder.encode(name+" report", "UTF-8");
+        String title = URLEncoder.encode(name + " report", "UTF-8");
         String data = "api_option=paste&api_user_key=" + Pastebin.token
                 + "&api_paste_private=0&api_paste_name=" + title
                 + "&api_paste_expire_date=1M&api_paste_format=" + "text"

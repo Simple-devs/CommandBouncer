@@ -32,11 +32,11 @@ public class CommandBouncerCommand implements CommandExecutor {
                 report(sender, prefix);
             } else if (args[0].equalsIgnoreCase("support")) {
                 support(sender, prefix);
-            } else if (args[0].equalsIgnoreCase("update")){
+            } else if (args[0].equalsIgnoreCase("update")) {
                 update(sender, prefix);
-            } else if (args[0].equalsIgnoreCase("psgs")){
+            } else if (args[0].equalsIgnoreCase("psgs")) {
                 psgs(sender, prefix);
-            } else if(args[0].equalsIgnoreCase("about")){
+            } else if (args[0].equalsIgnoreCase("about")) {
                 about(sender, prefix);
             }
         } else if (args.length > 1) {
@@ -136,30 +136,38 @@ public class CommandBouncerCommand implements CommandExecutor {
             plugin.badpermsSender(sender);
         }
     }
-    void update(CommandSender sender, String prefix){
-        if(sender.hasPermission("commandbouncer.cmd.commandbouncer.update")){
+
+    void update(CommandSender sender, String prefix)
+    {
+        if (sender.hasPermission("commandbouncer.cmd.commandbouncer.update")) {
             plugin.forceUpdate(sender, prefix);
-        }else{
+        } else {
             plugin.badpermsSender(sender);
         }
     }
-    String updatemessage(){
+
+    String updatemessage()
+    {
         String d = null;
-        if(plugin.update){
-            d = ChatColor.GRAY +""+ ChatColor.MAGIC + "-" + ChatColor.RESET + ChatColor.GRAY + " /" + ChatColor.GREEN + "CommandBouncer Update" + ChatColor.YELLOW + " Update to the latest version!";
-        }else{
-        d = ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Update" + ChatColor.YELLOW + " Force a download of the latest version.";
-                }
+        if (plugin.update) {
+            d = ChatColor.GRAY + "" + ChatColor.MAGIC + "-" + ChatColor.RESET + ChatColor.GRAY + " /" + ChatColor.GREEN + "CommandBouncer Update" + ChatColor.YELLOW + " Update to the latest version!";
+        } else {
+            d = ChatColor.GRAY + "-  /" + ChatColor.RED + "CommandBouncer Update" + ChatColor.YELLOW + " Force a download of the latest version.";
+        }
         return d;
     }
-    void about(CommandSender sender, String prefix){
-        if(sender.hasPermission("commandbouncer.cmd.commandbouncer.about")){
-        sender.sendMessage(prefix + ChatColor.YELLOW + "This plugin is developed by Carlgo11, Psgs & Cabbex.\nGo to"+ChatColor.AQUA+" http://git.io/BSSSjg "+ChatColor.YELLOW+"for more information.");
-        }else{
+
+    void about(CommandSender sender, String prefix)
+    {
+        if (sender.hasPermission("commandbouncer.cmd.commandbouncer.about")) {
+            sender.sendMessage(prefix + ChatColor.YELLOW + "This plugin is developed by Carlgo11, Psgs & Cabbex.\nGo to" + ChatColor.AQUA + " http://git.io/BSSSjg " + ChatColor.YELLOW + "for more information.");
+        } else {
             plugin.badpermsSender(sender);
         }
     }
-    void psgs(CommandSender sender, String prefix){
+
+    void psgs(CommandSender sender, String prefix)
+    {
         sender.sendMessage(prefix + ChatColor.LIGHT_PURPLE + "Get psgs'd!");
     }
 }
