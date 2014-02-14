@@ -51,8 +51,8 @@ disabled-worlds:
 
 # Enter the players you want to ignore. (You can also remove the permissions from the players)
 ignored-players:
-- iaccidentally
 - anminecrafter
+- zyxep
 
 # Do you want to disable the incomming message when a command matches a commnad listed below?
 # Example: player types /op & the command is set to be disabled /op won't be executed but the bounce-command will. 

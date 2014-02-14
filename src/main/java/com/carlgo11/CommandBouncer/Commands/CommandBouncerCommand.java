@@ -39,8 +39,8 @@ public class CommandBouncerCommand implements CommandExecutor {
             } else if(args[0].equalsIgnoreCase("about")){
                 about(sender, prefix);
             }
-        } else if (args.length == 2) {
-
+        } else if (args.length > 1) {
+            help(sender);
         }
         return true;
     }

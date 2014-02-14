@@ -22,7 +22,7 @@ permissions:
     default: op
     description: Plugin will listen on every command the player executes
   commandbouncer.cmd.commandbouncer:
-    default: op
+    default: true
     description: Give players permission to use /commandbouncer
   commandbouncer.cmd.commandbouncer.reload:
     default: op
@@ -36,4 +36,9 @@ permissions:
   commandbouncer.cmd.commandbouncer.support:
     default: op
     description: Give players permission to use /commandbouncer support
-    
+  commandbouncer.cmd.commandbouncer.list:
+    default: op
+    description: Give players permission to use /commandbouncer list
+  commandbouncer.cmd.commandbouncer.about:
+    default: true
+    description: Give players permission to use /commandbouncer about
