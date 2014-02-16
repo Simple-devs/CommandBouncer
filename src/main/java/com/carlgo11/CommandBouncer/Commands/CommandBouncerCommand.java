@@ -109,7 +109,7 @@ public class CommandBouncerCommand implements CommandExecutor {
         if (sender.hasPermission("commandbouncer.cmd.commandbouncer.report")) {
             try {
                 String pastebin = Pastebin.makePaste(Report.Main(plugin), plugin.getDescription().getName());
-                sender.sendMessage("" + prefix + ChatColor.GREEN + "Here's your log: " + pastebin);
+                sender.sendMessage("" + prefix + ChatColor.GREEN + "Here's your log: " + ChatColor.BLUE  + pastebin);
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage(prefix + "Error: " + ex.toString());
                 plugin.senddebug(ex.toString());
