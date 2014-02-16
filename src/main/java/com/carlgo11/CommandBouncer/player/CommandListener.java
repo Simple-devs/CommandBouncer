@@ -72,9 +72,11 @@ public class CommandListener implements Listener {
                     } else {
                         plugin.senddebug(player.getWorld().getName() + " is a disabled world.");
                     }
+                    
                 } else {
                     plugin.senddebug(player.getName() + " is an ignored player.");
                 }
+                
             } else {
                 if (plugin.getConfig().getBoolean("debug") == true) {
                     System.out.println("[" + plugin.getDescription().getName() + "] " + "No match: cmd" + a);

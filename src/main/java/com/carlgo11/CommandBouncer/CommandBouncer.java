@@ -96,7 +96,6 @@ public class CommandBouncer extends JavaPlugin {
 
     public void checkcmd()
     {
-
         for (a = a; b != c; a++) {
             if (getConfig().contains("cmd" + a)) {
             } else {
@@ -110,19 +109,6 @@ public class CommandBouncer extends JavaPlugin {
             }
             this.getLogger().info("Loaded " + a + " cmds from the config!");
         }
-    }
-
-    public void onError(String errormsg)
-    {
-        System.out.println("============ CommandBouncer ============");
-        System.out.println("ERROR MESSAGE STARTING: ");
-        System.out.println("");
-        System.out.println("Error: " + errormsg);
-        System.out.println();
-        System.out.println("!PLUGIN DISABLED!");
-        System.out.println("========================================");
-        errormsg = null;
-        this.getServer().getPluginManager().disablePlugin(this);
     }
 
     public void badpermsPlayer(Player p)
