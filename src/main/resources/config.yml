@@ -20,18 +20,18 @@ config-version: 1.0
 # +------------------------------------------------------+ #
 ############################################################
 
-# Does this plugin not work? Set "debug" to true and pastie your server.log to an developer
+# Does this plugin not work? Set "debug" to true and pastie your server.log to a developer
 # true/false
 debug: false
 
-# Do you want the plugin to update automaticly when a new version is avible? (Recommended: 'true')
+# Do you want the plugin to update automatically when a new version is available? (Recommended: 'true')
 auto-update: true
 
-# If auto-update is set to false. Who should recive information when a new update is available? (Recommended: 'perm')
+# If auto-update is set to false, who should receive information when a new update is available? (Recommended: 'perm')
 # Available options: op, perm, none
 warn-update: perm
 
-# Want to backup the current config and replace it with a new one when a new version of CommandBouncer is downloaded? (Might cause you some extra work when a new version is downloaded)
+# Would you like to to backup the current config and replace it with a new one when a new version of CommandBouncer is downloaded? (Might cause you some extra work when a new version is downloaded)
 update-config: false
 
 # When seeking assistance via /CommandBouncer support/report should the plugin upload your latest.log? (Recommended: 'true')
@@ -54,9 +54,9 @@ ignored-players:
 - anminecrafter
 - zyxep
 
-# Do you want to disable the incomming message when a command matches a commnad listed below?
+# Do you want to disable the incoming message when a command matches a command listed below?
 # Example: player types /op & the command is set to be disabled /op won't be executed but the bounce-command will. 
-# If a cmd is not set below it will not be disabled.
+# If a cmd is not set below, it will not be disabled.
 
 disabled-commands:
 - cmd1
@@ -67,8 +67,8 @@ disabled-commands:
 # +------------------------------------------------------+ #
 ############################################################
 
-# Enter the commands you want the plugin to listen on use the same number on the listening command as on the bouncer command!
-# EXAMPLE: cmd1: hi
+# Enter the commands you want the plugin to listen on. Use the same number on the listening command as on the bouncer command!
+# EXAMPLE: cmd1: hi (Remember to use the same number on the console commands - console1: msg %player% Hello!)
 cmd1: cmdbnctest
 
 ############################################################
