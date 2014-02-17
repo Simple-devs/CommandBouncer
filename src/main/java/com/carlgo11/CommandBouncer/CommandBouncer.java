@@ -98,14 +98,13 @@ public class CommandBouncer extends JavaPlugin {
     {
 
         for (a = a; b != c; a++) {
-            if (getConfig().contains("cmd" + a)) {
-            } else {
+            if (!getConfig().contains("cmd" + a)) {
                 b++;
             }
         }
 
         if (b == c) {
-            if (getConfig().getBoolean("debug") == true) {
+            if (getConfig().getBoolean("debug")) {
                 System.out.println("While loop closed");
             }
             this.getLogger().info("Loaded " + a + " cmds from the config!");

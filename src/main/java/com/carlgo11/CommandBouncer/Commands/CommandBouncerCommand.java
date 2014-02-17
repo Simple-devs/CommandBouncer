@@ -124,7 +124,7 @@ public class CommandBouncerCommand implements CommandExecutor {
         if (sender.hasPermission("commandbouncer.cmd.commandbouncer.support")) {
             try {
                 String pastebin = Pastebin.makePaste(Report.Main(plugin), plugin.getDescription().getName());
-                String purelink = pastebin.toString().replace("http://pastebin.com/", "");
+                String purelink = pastebin.replace("http://pastebin.com/", "");
                 sender.sendMessage("" + prefix + ChatColor.GREEN + "Thank you for choosing our support IRC!\nIf the helpers busy please post a question on bukkit.");
                 sender.sendMessage(ChatColor.YELLOW + "Connect with this link: " + ChatColor.BLUE + "http://cajs.co.uk/link/msg-irc?&nick=cmdbnc_" + purelink);
                 sender.sendMessage(ChatColor.YELLOW + "Here's your log: " + ChatColor.BLUE + pastebin + "\n" + ChatColor.GREEN + "Please give the developers your log.");
