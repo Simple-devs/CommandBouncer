@@ -1,7 +1,5 @@
-CommandBouncer
-==============
-
-[![Build Status](https://travis-ci.org/Simple-devs/CommandBouncer.png?branch=0.3)](https://travis-ci.org/Simple-devs/CommandBouncer)
+CommandBouncer  [![Build Status](https://travis-ci.org/Simple-devs/CommandBouncer.png?branch=0.3)](https://travis-ci.org/Simple-devs/CommandBouncer)
+==================
 
 This plugin executes a given command when a player executes a certain command
 
@@ -16,12 +14,12 @@ Development
 ==============
 For developing please use the latest branch.
 
-To help us develop this plugin you'll need:
+To help us develop this plugin, you'll need:
 
-- GitHub
+- [GitHub](http://github.com)
 
-- NetBeans
+- [NetBeans](https://netbeans.org)
 
-- Maven
+- [Maven](http://maven.apache.org)
 
 - A bukkit test server with the latest CraftBukkit `http://dl.bukkit.org/latest-dev/craftbukkit.jar`
