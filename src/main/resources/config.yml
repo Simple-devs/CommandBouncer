@@ -6,9 +6,8 @@
 # This plugin was created by: 
 # Carlgo11 http://www.carlgo11.com/
 # Psgs http://www.psgs.tk/
-# Cabbex 
-# Get in touch with us:
 #
+# Get in touch with us:
 # Join our irc: http://bit.ly/cmdbouncerirc
 # 
 
@@ -57,7 +56,6 @@ ignored-players:
 # Do you want to disable the incoming message when a command matches a command listed below?
 # Example: player types /op & the command is set to be disabled /op won't be executed but the bounce-command will. 
 # If a cmd is not set below, it will not be disabled.
-
 disabled-commands:
 - cmd1
 
@@ -68,7 +66,6 @@ disabled-commands:
 ############################################################
 
 # Enter the commands you want the plugin to listen on. Use the same number on the listening command as on the bouncer command!
-# EXAMPLE: cmd1: hi (Remember to use the same number on the console commands - console1: msg %player% Hello!)
 cmd1: cmdbnctest
 
 ############################################################
@@ -78,8 +75,6 @@ cmd1: cmdbnctest
 ############################################################
 
 # Enter the commands that you want the plugin to execute when a player types the given command
-
-# EXAMPLE: 
 console1:
 - tell %player% hello %player%!
 
