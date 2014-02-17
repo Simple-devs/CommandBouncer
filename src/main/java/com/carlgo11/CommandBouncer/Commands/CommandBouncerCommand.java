@@ -160,7 +160,7 @@ public class CommandBouncerCommand implements CommandExecutor {
     void about(CommandSender sender, String prefix)
     {
         if (sender.hasPermission("commandbouncer.cmd.commandbouncer.about")) {
-            sender.sendMessage(prefix + ChatColor.YELLOW + "This plugin is developed by Carlgo11, Psgs & Cabbex.\nGo to" + ChatColor.AQUA + " http://git.io/BSSSjg " + ChatColor.YELLOW + "for more information.");
+            sender.sendMessage(prefix + ChatColor.YELLOW + "This plugin is developed by Carlgo11 & Psgs.\nGo to" + ChatColor.AQUA + " http://git.io/BSSSjg " + ChatColor.YELLOW + "for more information.");
         } else {
             plugin.badpermsSender(sender);
         }
