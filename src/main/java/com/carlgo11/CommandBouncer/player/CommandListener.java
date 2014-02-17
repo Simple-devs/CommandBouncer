@@ -25,25 +25,8 @@ public class CommandListener implements Listener {
         String cmd = e.getMessage();
 
         for (int a = 1; a != CommandBouncer.a; a++) {
-            plugin.senddebug("forloop started!");
 
-            String wildCommand = null;
-            String[] splitCommand = e.getMessage().split(" ");
-            // Iterate through the split command
-            for (int x = 1; x <= splitCommand.length; x++) {
-                if (!splitCommand[0].equals("*")) {
-                    if (splitCommand[x].equals("*")) {
-                        // Iterate through the sections of the split command before the '*' character
-                        for (int y = 0; y <= x; y++) {
-                            // Build a new string with the sections below and including the '*' character
-                            wildCommand = wildCommand + " " + splitCommand[y];
-                        }
-                        break;
-                    }
-                }
-            }
-
-            if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a)) || (wildCommand != null && wildCommand.equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a)))) {
+            if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
                 plugin.senddebug("matches cmd" + a);
                 if (!Checks.checkDisPlayer(plugin, player)) {
                     if (!Checks.checkDisWorld(plugin, player.getWorld())) {
