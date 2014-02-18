@@ -28,10 +28,9 @@ public class CommandListener implements Listener {
             plugin.senddebug("forloop started!");
 
             String[] splitCommand = e.getMessage().split(" ");
-            // Iterate through the split command
             if (plugin.getConfig().contains(splitCommand[0] + " *")) {
                 e.setMessage(splitCommand[0]);
-        }
+            }
 
             if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a)) || (plugin.getConfig().getString("cmd" + a).equalsIgnoreCase(e.getMessage() + " *"))) {
                 plugin.senddebug("matches cmd" + a);
