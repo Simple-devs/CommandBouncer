@@ -25,8 +25,15 @@ public class CommandListener implements Listener {
         String cmd = e.getMessage();
 
         for (int a = 1; a != CommandBouncer.a; a++) {
+            plugin.senddebug("forloop started!");
 
-            if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a))) {
+            String[] splitCommand = e.getMessage().split(" ");
+            // Iterate through the split command
+            if (plugin.getConfig().contains(splitCommand[0] + " *")) {
+                e.setMessage(splitCommand[0]);
+        }
+
+            if (e.getMessage().equalsIgnoreCase("/" + plugin.getConfig().getString("cmd" + a)) || (plugin.getConfig().getString("cmd" + a).equalsIgnoreCase(e.getMessage() + " *"))) {
                 plugin.senddebug("matches cmd" + a);
                 if (!Checks.checkDisPlayer(plugin, player)) {
                     if (!Checks.checkDisWorld(plugin, player.getWorld())) {
@@ -69,11 +76,11 @@ public class CommandListener implements Listener {
                     } else {
                         plugin.senddebug(player.getWorld().getName() + " is a disabled world.");
                     }
-                    
+
                 } else {
                     plugin.senddebug(player.getName() + " is an ignored player.");
                 }
-                
+
             } else {
                 if (plugin.getConfig().getBoolean("debug")) {
                     System.out.println("[" + plugin.getDescription().getName() + "] " + "No match: cmd" + a);
