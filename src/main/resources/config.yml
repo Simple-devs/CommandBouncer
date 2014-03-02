@@ -61,8 +61,8 @@ ignored-players:
 disabled-commands:
 - cmd1
 
-# This setting enabled the plugin to search for commands that only starts with the command. 
-# For example if a cmd<number> is set to ban it will react on /ban admin and /ban player.
+# This setting enables the plugin to search for commands that only starts with the command. 
+# For example if a cmd<number> is set to ban it will react on /ban admin and /ban player. (admin and player being an actuall user)
 startswith-commands:
 - cmd1
 ############################################################
