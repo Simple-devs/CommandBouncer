@@ -22,6 +22,9 @@ config-version: 1.0
 # true/false
 debug: false
 
+# Want to help us improve this plugin? Send us anonymus statics about our plugin. (Recommended: 'true')
+opt-out: true
+
 # Do you want the plugin to update automatically when a new version is available? (Recommended: 'true')
 auto-update: true
 
@@ -58,6 +61,10 @@ ignored-players:
 disabled-commands:
 - cmd1
 
+# This setting enabled the plugin to search for commands that only starts with the command. 
+# For example if a cmd<number> is set to ban it will react on /ban admin and /ban player.
+startswith-commands:
+- cmd1
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Listen Commands                    | #

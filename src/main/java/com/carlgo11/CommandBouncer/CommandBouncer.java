@@ -74,12 +74,16 @@ public class CommandBouncer extends JavaPlugin {
 
     public void checkMetrics()
     {
+        if(getConfig().getBoolean("opt-out")){
         try {
             Metrics metrics = new Metrics(this);
             CustomGraphs.graphs(metrics, this);
             metrics.start();
         } catch (IOException ex) {
             System.out.println("[" + getDescription().getName() + "] " + "Error Submitting stats! " + "Output: " + ex.toString());
+        }
+        }else{
+            this.getLogger().info("opt-out disabled. Will not upload stats to mcstats.");
         }
     }
 
