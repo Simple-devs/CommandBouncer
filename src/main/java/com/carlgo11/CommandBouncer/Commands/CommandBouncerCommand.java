@@ -1,8 +1,7 @@
 package com.carlgo11.CommandBouncer.Commands;
 
 import com.carlgo11.CommandBouncer.CommandBouncer;
-import com.carlgo11.CommandBouncer.Report;
-import com.carlgo11.CommandBouncer.pastebin.Pastebin;
+import com.carlgo11.report.Pastebin;
 import java.io.UnsupportedEncodingException;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
@@ -108,7 +107,7 @@ public class CommandBouncerCommand implements CommandExecutor {
     {
         if (sender.hasPermission("commandbouncer.cmd.commandbouncer.report")) {
             try {
-                String pastebin = Pastebin.makePaste(Report.Main(plugin), plugin.getDescription().getName());
+                String pastebin = Pastebin.makePaste("CommandBouncer Report", plugin);
                 sender.sendMessage("" + prefix + ChatColor.GREEN + "Here's your log: " + ChatColor.BLUE  + pastebin);
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage(prefix + "Error: " + ex.toString());
@@ -123,10 +122,10 @@ public class CommandBouncerCommand implements CommandExecutor {
     {
         if (sender.hasPermission("commandbouncer.cmd.commandbouncer.support")) {
             try {
-                String pastebin = Pastebin.makePaste(Report.Main(plugin), plugin.getDescription().getName());
+                String pastebin = Pastebin.makePaste("CommandBouncer Report", plugin);
                 String purelink = pastebin.replace("http://pastebin.com/", "");
                 sender.sendMessage("" + prefix + ChatColor.GREEN + "Thank you for choosing our support IRC!\nIf the helpers busy please post a question on bukkit.");
-                sender.sendMessage(ChatColor.YELLOW + "Connect with this link: " + ChatColor.BLUE + "http://cajs.co.uk/link/msg-irc?&nick=cmdbnc_" + purelink);
+                sender.sendMessage(ChatColor.YELLOW + "Connect with this link: " + ChatColor.BLUE + "http://cajs.co.uk/link/irc?&nick=cmdbnc_" + purelink);
                 sender.sendMessage(ChatColor.YELLOW + "Here's your log: " + ChatColor.BLUE + pastebin + "\n" + ChatColor.GREEN + "Please give the developers your log.");
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage("Error: " + ex.toString());
